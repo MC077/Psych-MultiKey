@@ -1,0 +1,10 @@
+name: Improvement
+description: Suggest an improvement to enhance the mod.
+labels: [improvement]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Describe your improvement here."
+    validations:
+      required: true

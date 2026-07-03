@@ -1,4 +1,8 @@
-# Psych MultiKey
-The github repo for psychengine's softcoded multikey!
+![PsychMultiLogo](images/misc/PsychEngineLogoTweak.png)
 
-# I'm Killing Myself
+# Psych MultiKey
+Converting Psych into a multikey engine.
+
+## Credits:
+* MC07 - Main Coder of Psychengine multikeys.
+* DeltaPulsar - Main Charter.
