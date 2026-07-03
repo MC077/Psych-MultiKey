@@ -5,15 +5,13 @@ import backend.MusicBeatState;
 import backend.Song;
 import objects.Note;
 
-var keyBinds:Array<String> = [];
+var keyBinds:Array<Array<String>> = [];
 var keyCount:Int = 0;
 
 var scriptPath:String;
 var multiKey:Bool = true;
 
 function onCreate() {
-    //if (MusicBeatState.getVariables().get('multiLoaded') == true) return Function_Stop;
-    //else MusicBeatState.getVariables().set('multiLoaded', true); // it started loading two instances so now i gotta protect against it?????
 
     var name:String = getChartString();
     var json:Dynamic = TJSON.parse(Paths.getTextFromFile(name));
@@ -47,27 +45,37 @@ function onCreate() {
 function onUpdate(elapsed:Float) {
     if (multiKey) {
 
-        var controls:Array<Array<Bool>> = [];
+        var controls:Array<Array<Array<Bool>>> = [];
 
         for (i in 0...keyCount) {
+            controls[i] = [];
             
-            controls.push(checkPressed(keyBinds[i]));
+            for (key in 0...keyBinds[i].length) {
+                controls[i].push(checkPressed(keyBinds[i][key]));
+            }
 
-            if (controls[i][0]) {
-                figureOutHit(i);
-            }
-            if (controls[i][1]) {
-                for (note in notes.members) {
-                    if (note == null) continue;
-                
-                    if (note.mustPress && note.noteData == i && note.isSustainNote && note.canBeHit && !note.wasGoodHit)
-                    {
-                        goodNoteHit(note);
+            var shouldStatic:Bool = true;
+            for (check in 0...controls[i].length) {
+
+                var curKey:Array<Bool> = controls[i][check];
+
+                if (curKey[0]) {
+                    figureOutHit(i);
+                    shouldStatic = false;
+                } else if (curKey[1]) {
+                    for (note in notes.members) {
+                        if (note == null) continue;
+
+                        if (note.mustPress && note.noteData == i && note.isSustainNote && note.canBeHit && !note.wasGoodHit)
+                        {
+                            goodNoteHit(note);
+                        }
                     }
+                    shouldStatic = false;
                 }
-            } else if (!controls[i][1]) {
-                playerStrums.members[i].playAnim('static');
             }
+
+            if (shouldStatic) playerStrums.members[i].playAnim("static");
         }
     }
 }
@@ -156,17 +164,17 @@ function getChartString():String {
 
 function loadKeyBinds() {
     var text:String = Paths.getTextFromFile('Keybinds ' + keyCount + 'K.txt');
-    var fakeArray:Array<String> = text.split(',');
+    var fakeArray:Array<String> = text.split('||');
 
-    for (i in 0...keyCount) keyBinds.push(StringTools.trim(fakeArray[i]));
+    for (i in 0...keyCount) keyBinds.push(fakeArray[i].split(','));
 
     switch(keyCount) {
         case 1:
-            if (keyBinds.length < keyCount) keyBinds = ['SPACE'];
+            if (keyBinds.length < keyCount) keyBinds = [['SPACE', 'null']];
         case 2:
-            if (keyBinds.length < keyCount) keyBinds = ['A', 'RIGHT'];
+            if (keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['D', 'RIGHT']];
         case 6:
-            if (keyBinds.length < keyCount) keyBinds = ['A', 'S', 'D', 'J', 'K', 'L'];
+            if (keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
     }
 }
 
@@ -264,7 +272,7 @@ function getMultiTexture(texture:String):String {
 
 function checkPressed(key:String):Array<Bool> //because i cant do any fancy stuff i guess
 {
-    switch (key.toUpperCase())
+    switch (StringTools.trim(key.toUpperCase()))
     {
         case "A": return [FlxG.keys.justPressed.A, FlxG.keys.pressed.A];
         case "B": return [FlxG.keys.justPressed.B, FlxG.keys.pressed.B];
