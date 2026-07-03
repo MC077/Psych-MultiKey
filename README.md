@@ -1,4 +1,4 @@
-![PsychMultiLogo](images/misc/PsychEngineLogoTweak.png)
+![PsychMultiLogo](images/misc/Logo.png)
 
 # Psych MultiKey
 Converting Psych into a multikey engine.
