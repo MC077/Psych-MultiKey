@@ -28,6 +28,8 @@ function onCreate() {
             scriptPath = 'scripts/Keys/1K.hx';
         case 2:
             scriptPath = 'scripts/Keys/2K.hx';
+        case 3:
+            scriptPath = 'scripts/Keys/3K.hx';
         case 6:
             scriptPath = 'scripts/Keys/6K.hx';
         default:
@@ -164,17 +166,21 @@ function getChartString():String {
 
 function loadKeyBinds() {
     var text:String = Paths.getTextFromFile('Keybinds ' + keyCount + 'K.txt');
-    var fakeArray:Array<String> = text.split('||');
-
-    for (i in 0...keyCount) keyBinds.push(fakeArray[i].split(','));
+    
+    if (text != null && text != '') {
+        var fakeArray:Array<String> = text.split('||');
+        for (i in 0...keyCount) keyBinds.push(fakeArray[i].split(','));
+    }
 
     switch(keyCount) {
         case 1:
-            if (keyBinds.length < keyCount) keyBinds = [['SPACE', 'null']];
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['SPACE', 'null']];
         case 2:
-            if (keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['D', 'RIGHT']];
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['D', 'RIGHT']];
+        case 3:
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT']];
         case 6:
-            if (keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
     }
 }
 

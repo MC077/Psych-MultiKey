@@ -1,0 +1,159 @@
+import flixel.FlxG;
+
+import backend.ClientPrefs;
+
+import objects.StrumNote;
+import objects.NoteSplash;
+
+var colArray:String = ['purple', 'blue', 'green', 'red'];
+
+function onCreatePost() {
+    for (note in unspawnNotes) {
+        switch(note.noteData) {
+            case 0:
+                if (!note.isSustainNote) {
+                    note.animation.addByPrefix(colArray[note.noteData] + 'Scroll', colArray[note.noteData] + '0');
+                    note.animation.play(colArray[note.noteData] + 'Scroll');
+                }
+                note.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
+                note.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
+                note.rgbShader.b = ClientPrefs.data.arrowRGB[0][2];
+
+                note.noteSplashData.r = ClientPrefs.data.arrowRGB[0][0];
+                note.noteSplashData.g = ClientPrefs.data.arrowRGB[0][1];
+                note.noteSplashData.b = ClientPrefs.data.arrowRGB[0][2];
+            case 1:
+                if (!note.isSustainNote) {
+                    note.animation.addByPrefix(colArray[1] + 'Scroll', colArray[1] + '0');
+                    note.animation.play(colArray[1] + 'Scroll');
+                }
+                note.rgbShader.r = ClientPrefs.data.arrowRGB[1][0];
+                note.rgbShader.g = ClientPrefs.data.arrowRGB[1][1];
+                note.rgbShader.b = ClientPrefs.data.arrowRGB[1][2];
+
+                note.noteSplashData.r = ClientPrefs.data.arrowRGB[1][0];
+                note.noteSplashData.g = ClientPrefs.data.arrowRGB[1][1];
+                note.noteSplashData.b = ClientPrefs.data.arrowRGB[1][2];
+            case 2:
+                if (!note.isSustainNote) {
+                    note.animation.addByPrefix(colArray[3] + 'Scroll', colArray[3] + '0');
+                    note.animation.play(colArray[3] + 'Scroll');
+                }
+                note.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
+                note.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
+                note.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
+
+                note.noteSplashData.r = ClientPrefs.data.arrowRGB[3][0];
+                note.noteSplashData.g = ClientPrefs.data.arrowRGB[3][1];
+                note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
+        }
+    }
+}
+
+function generateStaticArrows(player:Int) {
+	var strumLineX:Float = ClientPrefs.data.middleScroll ? -322.5 : 16;
+	var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
+
+	for (i in 0...3)
+	{
+		var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, 0, player);
+		babyArrow.downScroll = ClientPrefs.data.downScroll;
+
+        switch(i) {
+            case 0:
+                babyArrow.animation.addByPrefix('static', 'arrowLEFT');
+                babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+
+                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
+                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
+                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[0][2];
+            case 1:
+                babyArrow.animation.addByPrefix('static', 'arrowDOWN');
+                babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+
+                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[1][0];
+                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[1][1];
+                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[1][2];
+            case 2:
+                babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
+                babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+
+                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
+                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
+                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
+        }
+        babyArrow.playAnim('static');
+        babyArrow.noteData = i;
+		strumLineNotes.add(babyArrow);
+        if (player > 0) {
+            babyArrow.x += 175;
+            playerStrums.add(babyArrow);
+        }
+        else opponentStrums.add(babyArrow);
+		babyArrow.playerPosition();
+
+        callOnHScript('tweenNoteIn', [player, babyArrow]);
+	}
+    callOnHScript('updateNoteDatas');
+}
+
+function onCountdownStarted() {
+    for (strum in game.strumLineNotes) game.strumLineNotes.remove(strum);
+    for (strum in game.playerStrums) game.playerStrums.remove(strum);
+    for (strum in game.opponentStrums) game.opponentStrums.remove(strum);
+	generateStaticArrows(0);
+	generateStaticArrows(1);
+}
+
+var singDirections:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
+
+function noteHitAnims(note:Note) {
+
+    var anim:String = 'sing';
+    
+    switch(note.noteData) {
+        case 0:
+            anim = anim + singDirections[0];
+        case 1:
+            anim = anim + singDirections[1];
+        case 2:
+            anim = anim + singDirections[3];
+    }
+
+    boyfriend.playAnim(anim + note.animSuffix, true);
+}
+
+function noteMiss(note:Note) {
+
+    var anim:String = 'sing';
+
+    switch(note.noteData) {
+        case 0:
+            anim = anim + singDirections[0] + 'miss';
+        case 1:
+            anim = anim + singDirections[1] + 'miss';
+        case 2:
+            anim = anim + singDirections[3] + 'miss';
+    }
+    
+    boyfriend.playAnim(anim + note.animSuffix, true);
+}
+
+function opponentNoteHit(note:Note) {
+
+    var anim:String = 'sing';
+    
+    switch(note.noteData) {
+        case 0:
+            anim = anim + singDirections[0];
+        case 1:
+            anim = anim + singDirections[1];
+        case 2:
+            anim = anim + singDirections[3];
+    }
+
+    dad.playAnim(anim + note.animSuffix, true);
+}
