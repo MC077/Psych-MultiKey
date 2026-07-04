@@ -35,6 +35,8 @@ function onCreatePost() {
                 note.noteSplashData.g = ClientPrefs.data.arrowRGB[3][1];
                 note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
         }
+        note.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
+        note.noteSplashData.enabled = !PlayState.SONG.disableNoteRGB;
     }
 }
 
@@ -65,8 +67,9 @@ function generateStaticArrows(player:Int) {
                 babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
                 babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
         }
-        babyArrow.playAnim('static');
         babyArrow.noteData = i;
+        babyArrow.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
+        babyArrow.playAnim('static');
 		strumLineNotes.add(babyArrow);
         if (player > 0) {
             if (!ClientPrefs.data.middleScroll) {

@@ -30,6 +30,8 @@ function onCreate() {
             scriptPath = 'scripts/Keys/2K.hx';
         case 3:
             scriptPath = 'scripts/Keys/3K.hx';
+        case 5:
+            scriptPath = 'scripts/Keys/5K.hx';
         case 6:
             scriptPath = 'scripts/Keys/6K.hx';
         default:
@@ -179,6 +181,8 @@ function loadKeyBinds() {
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['D', 'RIGHT']];
         case 3:
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT']];
+        case 5:
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['SPACE', 'null'], ['W', 'UP'], ['D', 'RIGHT']];
         case 6:
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
     }

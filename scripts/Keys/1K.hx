@@ -29,7 +29,11 @@ function onCreatePost() {
         note.noteSplashData.r = 0xFFCCCCCC;
         note.noteSplashData.g = 0xFFFFFFFF;
         note.noteSplashData.b = 0xFF3E3E3E;
+        
+        note.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
+        note.noteSplashData.enabled = !PlayState.SONG.disableNoteRGB;
     }
+
 }
 
 function generateStaticArrows(player:Int) {
@@ -46,8 +50,9 @@ function generateStaticArrows(player:Int) {
     babyArrow.rgbShader.r = 0xFFCCCCCC;
     babyArrow.rgbShader.g = 0xFFFFFFFF;
     babyArrow.rgbShader.b = 0xFF3E3E3E;
-    babyArrow.playAnim('static');
     babyArrow.noteData = 0;
+    babyArrow.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
+    babyArrow.playAnim('static');
 
 	strumLineNotes.add(babyArrow);
     if (player > 0) {
