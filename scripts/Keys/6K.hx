@@ -9,7 +9,11 @@ var colArray:String = ['purple', 'blue', 'green', 'red'];
 function onCreatePost() {
     for (note in unspawnNotes) {
         if (!note.isSustainNote) note.scale.set(0.6, 0.6);
-        else note.scale.x = 0.6; //do it this way to avoid breaking sustains
+        else {
+            note.scale.x = 0.6; //do it this way to avoid breaking sustains
+            note.offsetX -= 1.5;
+            note.offsetY -= 5;
+        }
         switch(note.noteData) {
             case 0:
                 if (!note.isSustainNote) {

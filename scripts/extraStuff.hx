@@ -36,6 +36,8 @@ function onCreate() {
             scriptPath = 'scripts/Keys/6K.hx';
         case 7:
             scriptPath = 'scripts/Keys/7K.hx';
+        case 8:
+            scriptPath = 'scripts/Keys/8K.hx';
         default:
             if (keyCount != 4) {
                 game.addTextToDebug("No valid keycount found!", 0xFFFF0000);
@@ -189,6 +191,8 @@ function loadKeyBinds() {
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
         case 7:
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['SPACE', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
+        case 8:
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['F', 'null'], ['SPACE', 'null'], ['H', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
     }
 }
 
