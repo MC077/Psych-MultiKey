@@ -3,7 +3,6 @@ import flixel.FlxG;
 import backend.ClientPrefs;
 
 import objects.StrumNote;
-import objects.NoteSplash;
 
 var colArray:String = ['purple', 'blue', 'green', 'red'];
 

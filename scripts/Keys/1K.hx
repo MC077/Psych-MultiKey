@@ -3,7 +3,6 @@ import flixel.FlxG;
 import backend.ClientPrefs;
 
 import objects.StrumNote;
-import objects.NoteSplash;
 
 function onCreatePost() {
     for (note in unspawnNotes) {
