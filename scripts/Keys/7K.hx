@@ -11,8 +11,8 @@ function onCreatePost() {
         if (!note.isSustainNote) note.scale.set(0.6, 0.6);
         else {
             note.scale.x = 0.6; //do it this way to avoid breaking sustains
-            note.offsetX -= 1.5;
-            note.offsetY -= 5;
+            note.offsetX -= 5;
+            note.offsetY -= 10;
         }
         switch(note.noteData) {
             case 0:
@@ -270,10 +270,12 @@ function noteHitAnims(note:Note) {
         case 2:
             anim = anim + singDirections[3];
         case 3:
-            anim = anim + singDirections[0];
-        case 4:
             anim = anim + singDirections[2];
+        case 4:
+            anim = anim + singDirections[0];
         case 5:
+            anim = anim + singDirections[2];
+        case 6:
             anim = anim + singDirections[3];
     }
 
@@ -292,10 +294,12 @@ function noteMiss(note:Note) {
         case 2:
             anim = anim + singDirections[3] + 'miss';
         case 3:
-            anim = anim + singDirections[0] + 'miss';
-        case 4:
             anim = anim + singDirections[2] + 'miss';
+        case 4:
+            anim = anim + singDirections[0] + 'miss';
         case 5:
+            anim = anim + singDirections[2] + 'miss';
+        case 6:
             anim = anim + singDirections[3] + 'miss';
     }
     
@@ -314,10 +318,12 @@ function opponentNoteHit(note:Note) {
         case 2:
             anim = anim + singDirections[3];
         case 3:
-            anim = anim + singDirections[0];
-        case 4:
             anim = anim + singDirections[2];
+        case 4:
+            anim = anim + singDirections[0];
         case 5:
+            anim = anim + singDirections[2];
+        case 6:
             anim = anim + singDirections[3];
     }
 

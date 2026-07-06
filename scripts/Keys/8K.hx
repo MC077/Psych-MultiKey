@@ -296,12 +296,16 @@ function noteHitAnims(note:Note) {
         case 1:
             anim = anim + singDirections[1];
         case 2:
-            anim = anim + singDirections[3];
-        case 3:
-            anim = anim + singDirections[0];
-        case 4:
             anim = anim + singDirections[2];
+        case 3:
+            anim = anim + singDirections[3];
+        case 4:
+            anim = anim + singDirections[0];
         case 5:
+            anim = anim + singDirections[1];
+        case 6:
+            anim = anim + singDirections[2];
+        case 7:
             anim = anim + singDirections[3];
     }
 
@@ -318,12 +322,16 @@ function noteMiss(note:Note) {
         case 1:
             anim = anim + singDirections[1] + 'miss';
         case 2:
-            anim = anim + singDirections[3] + 'miss';
-        case 3:
-            anim = anim + singDirections[0] + 'miss';
-        case 4:
             anim = anim + singDirections[2] + 'miss';
+        case 3:
+            anim = anim + singDirections[3] + 'miss';
+        case 4:
+            anim = anim + singDirections[0] + 'miss';
         case 5:
+            anim = anim + singDirections[1] + 'miss';
+        case 6:
+            anim = anim + singDirections[2] + 'miss';
+        case 7:
             anim = anim + singDirections[3] + 'miss';
     }
     
@@ -340,12 +348,16 @@ function opponentNoteHit(note:Note) {
         case 1:
             anim = anim + singDirections[1];
         case 2:
-            anim = anim + singDirections[3];
-        case 3:
-            anim = anim + singDirections[0];
-        case 4:
             anim = anim + singDirections[2];
+        case 3:
+            anim = anim + singDirections[3];
+        case 4:
+            anim = anim + singDirections[0];
         case 5:
+            anim = anim + singDirections[1];
+        case 6:
+            anim = anim + singDirections[2];
+        case 7:
             anim = anim + singDirections[3];
     }
 
