@@ -72,9 +72,9 @@ function onCreatePost() {
                 note.rgbShader.g = ClientPrefs.data.arrowRGB[2][1];
                 note.rgbShader.b = ClientPrefs.data.arrowRGB[2][2];
 
-                note.noteSplashData.r = ClientPrefs.data.arrowRGB[3][0];
-                note.noteSplashData.g = ClientPrefs.data.arrowRGB[3][1];
-                note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
+                note.noteSplashData.r = ClientPrefs.data.arrowRGB[2][0];
+                note.noteSplashData.g = ClientPrefs.data.arrowRGB[2][1];
+                note.noteSplashData.b = ClientPrefs.data.arrowRGB[2][2];
             case 3:
                 if (!note.isSustainNote) {
                     note.animation.addByPrefix('Note', 'right 1');
