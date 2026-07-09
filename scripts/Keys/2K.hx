@@ -14,25 +14,46 @@ function onCreatePost() {
                     note.animation.addByPrefix(colArray[note.noteData] + 'Scroll', colArray[note.noteData] + '0');
                     note.animation.play(colArray[note.noteData] + 'Scroll');
                 }
-                note.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
-                note.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
-                note.rgbShader.b = ClientPrefs.data.arrowRGB[0][2];
+                
+                if (note.extraData.get('canChangeRGB') == null) {
+                    /*
+                    For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
+                    For Haxe: note.extraData.set('canChangeRGB', false);
 
-                note.noteSplashData.r = ClientPrefs.data.arrowRGB[0][0];
-                note.noteSplashData.g = ClientPrefs.data.arrowRGB[0][1];
-                note.noteSplashData.b = ClientPrefs.data.arrowRGB[0][2];
+                    use these to DISABLE note rgb changes
+                    */
+
+                    note.extraData.set('canChangeRGB', true);
+                    note.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
+                    note.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
+                    note.rgbShader.b = ClientPrefs.data.arrowRGB[0][2];
+
+                    note.noteSplashData.r = ClientPrefs.data.arrowRGB[0][0];
+                    note.noteSplashData.g = ClientPrefs.data.arrowRGB[0][1];
+                    note.noteSplashData.b = ClientPrefs.data.arrowRGB[0][2];
+                }
             case 1:
                 if (!note.isSustainNote) {
                     note.animation.addByPrefix(colArray[3] + 'Scroll', colArray[3] + '0');
                     note.animation.play(colArray[3] + 'Scroll');
                 }
-                note.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
-                note.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
-                note.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
+                if (note.extraData.get('canChangeRGB') == null) {
+                    /*
+                    For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
+                    For Haxe: note.extraData.set('canChangeRGB', false);
 
-                note.noteSplashData.r = ClientPrefs.data.arrowRGB[3][0];
-                note.noteSplashData.g = ClientPrefs.data.arrowRGB[3][1];
-                note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
+                    use these to DISABLE note rgb changes
+                    */
+
+                    note.extraData.set('canChangeRGB', true);
+                    note.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
+                    note.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
+                    note.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
+
+                    note.noteSplashData.r = ClientPrefs.data.arrowRGB[3][0];
+                    note.noteSplashData.g = ClientPrefs.data.arrowRGB[3][1];
+                    note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
+                }
         }
         note.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
         note.noteSplashData.enabled = !PlayState.SONG.disableNoteRGB;
@@ -99,7 +120,7 @@ function onCountdownStarted() {
 
 var singDirections:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
 
-function noteHitAnims(note:Note) {
+function goodNoteHit(note:Note) {
 
     var anim:String = 'sing';
     

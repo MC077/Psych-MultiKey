@@ -76,7 +76,7 @@ function onUpdate(elapsed:Float) {
 
                         if (note.mustPress && note.noteData == i && note.isSustainNote && note.canBeHit && !note.wasGoodHit)
                         {
-                            goodNoteHit(note);
+                            game.goodNoteHit(note);
                         }
                     }
                     shouldStatic = false;
@@ -106,37 +106,6 @@ function onGhostTap(key:Int) {
         playerStrums.members[key].resetAnim = 0;
     }
 }
-
-function goodNoteHitPre(note:Note) {
-    if (multiKey) {
-        return Function_Stop;
-    }
-}
-
-function goodNoteHit(note:Note) {
-    if (multiKey) {
-        playerStrums.members[note.noteData].playAnim('confirm', true);
-        playerStrums.members[note.noteData].resetAnim = 0;
-        if (note.isSustainNote) {
-            note.clipToStrumNote(playerStrums.members[note.noteData]);
-            note.wasGoodHit = true;
-        } else invalidateNote(note);
-
-        boyfriend.holdTimer = 0;
-
-        if (!note.isSustainNote && note.rating == 'sick') game.spawnNoteSplashOnNote(note);
-        if (!note.isSustainNote) {
-            game.combo += 1;
-            game.popUpScore(note);
-
-        }
-        game.health += note.hitHealth;
-        game.vocals.volume = 1;
-
-        callOnHScript('noteHitAnims', [note]); //just to avoid retriggering any goodnotehits on other scripts that cause effects
-    }
-}
-
 
 function opponentNoteHit(note:Note) {
     if (multiKey) {
@@ -242,8 +211,13 @@ function figureOutHit(key:Int) {
 				}
 			}
 		}
-		goodNoteHit(funnyNote);
-    } else onGhostTap(key);
+		game.goodNoteHit(funnyNote);
+    } else {
+		if (ClientPrefs.data.ghostTapping)
+			onGhostTap(key);
+		else
+			game.noteMissPress(key);
+    }
 }
 
 function sortHitNotes(a:Note, b:Note):Int
@@ -264,6 +238,9 @@ function invalidateNote(note:Note):Void {
 
 function updateNoteDatas() {
     for (note in unspawnNotes) {
+
+        if (note.noteType == 'Hurt Note') note.extraData.set('canChangeRGB', false);
+
         if (note.noteType == '5') note.noteData = 4;
         if (note.noteType == '6') note.noteData = 5;
         if (note.noteType == '7') note.noteData = 6;
@@ -284,8 +261,14 @@ function updateNoteDatas() {
 }
 
 function getMultiTexture(texture:String):String {
-    if (Paths.fileExists('images/noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi.png', 'IMAGE')) return 'noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi';
-    else return 'noteSkins/NOTE_assets-multi';
+    if (StringTools.startsWith(texture, 'noteSkins')) {
+        if (Paths.fileExists('images/' + texture + '-multi.png', 'IMAGE')) return 'noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi';
+        else return 'noteSkins/NOTE_assets-multi';
+    } else {
+        if (Paths.fileExists('images/' + texture + '-multi.png', 'IMAGE')) return 'noteSkins/' + texture + '-multi';
+        else return 'noteSkins/NOTE_assets-multi';
+    }
+
 }
 
 function checkPressed(key:String):Array<Bool> //because i cant do any fancy stuff i guess

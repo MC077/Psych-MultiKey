@@ -21,13 +21,24 @@ function onCreatePost() {
                 note.animation.play("hold");
             }
         }
-        note.rgbShader.r = 0xFFCCCCCC;
-        note.rgbShader.g = 0xFFFFFFFF;
-        note.rgbShader.b = 0xFF3E3E3E;
 
-        note.noteSplashData.r = 0xFFCCCCCC;
-        note.noteSplashData.g = 0xFFFFFFFF;
-        note.noteSplashData.b = 0xFF3E3E3E;
+        if (note.extraData.get('canChangeRGB') == null) {
+            /*
+            For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
+            For Haxe: note.extraData.set('canChangeRGB', false);
+
+            use these to DISABLE note rgb changes
+            */
+
+            note.extraData.set('canChangeRGB', true);
+            note.rgbShader.r = 0xFFCCCCCC;
+            note.rgbShader.g = 0xFFFFFFFF;
+            note.rgbShader.b = 0xFF3E3E3E;
+
+            note.noteSplashData.r = 0xFFCCCCCC;
+            note.noteSplashData.g = 0xFFFFFFFF;
+            note.noteSplashData.b = 0xFF3E3E3E;
+        }
         
         note.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
         note.noteSplashData.enabled = !PlayState.SONG.disableNoteRGB;
@@ -78,7 +89,7 @@ function onCountdownStarted() {
 
 var singDirections:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
 
-function noteHitAnims(note:Note) boyfriend.playAnim('sing' + singDirections[2] + note.animSuffix, true);
+function goodNoteHit(note:Note) boyfriend.playAnim('sing' + singDirections[2] + note.animSuffix, true);
 
 function noteMiss(note:Note) boyfriend.playAnim('sing' + singDirections[2] + 'miss' + note.animSuffix, true);
 
