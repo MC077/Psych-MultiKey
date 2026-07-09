@@ -261,13 +261,8 @@ function updateNoteDatas() {
 }
 
 function getMultiTexture(texture:String):String {
-    if (StringTools.startsWith(texture, 'noteSkins')) {
-        if (Paths.fileExists('images/' + texture + '-multi.png', 'IMAGE')) return 'noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi';
-        else return 'noteSkins/NOTE_assets-multi';
-    } else {
-        if (Paths.fileExists('images/' + texture + '-multi.png', 'IMAGE')) return 'noteSkins/' + texture + '-multi';
-        else return 'noteSkins/NOTE_assets-multi';
-    }
+    if (Paths.fileExists('images/' + texture + '-multi.png', 'IMAGE')) return texture + '-multi';
+    else return 'noteSkins/NOTE_assets-multi';
 
 }
 
