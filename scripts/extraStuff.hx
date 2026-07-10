@@ -241,20 +241,7 @@ function updateNoteDatas() {
 
         if (note.noteType == 'Hurt Note') note.extraData.set('canChangeRGB', false);
 
-        if (note.noteType == '5') note.noteData = 4;
-        if (note.noteType == '6') note.noteData = 5;
-        if (note.noteType == '7') note.noteData = 6;
-        if (note.noteType == '8') note.noteData = 7;
-        if (note.noteType == '9') note.noteData = 8;
-        if (note.noteType == '10') note.noteData = 9;
-        if (note.noteType == '11') note.noteData = 10;
-        if (note.noteType == '12') note.noteData = 11;
-        if (note.noteType == '13') note.noteData = 12;
-        if (note.noteType == '14') note.noteData = 13;
-        if (note.noteType == '15') note.noteData = 14;
-        if (note.noteType == '16') note.noteData = 15;
-        if (note.noteType == '17') note.noteData = 16;
-        if (note.noteType == '18') note.noteData = 17;
+        if (note.extraData.get("realData") != null) note.noteData = Std.parseInt(note.extraData.get("realData"));
 
         if (note.noteData > keyCount - 1) note.noteData = 0;
     }
