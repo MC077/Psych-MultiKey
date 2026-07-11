@@ -4,15 +4,13 @@ import backend.ClientPrefs;
 
 import objects.StrumNote;
 
-var colArray:String = ['purple', 'blue', 'green', 'red'];
-
 function onCreatePost() {
     for (note in unspawnNotes) {
         switch(note.noteData) {
             case 0:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix(colArray[note.noteData] + 'Scroll', colArray[note.noteData] + '0');
-                    note.animation.play(colArray[note.noteData] + 'Scroll');
+                    note.animation.addByPrefix('Note', 'purple0');
+                    note.animation.play('Note');
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*
@@ -33,8 +31,8 @@ function onCreatePost() {
                 }
             case 1:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix(colArray[1] + 'Scroll', colArray[1] + '0');
-                    note.animation.play(colArray[1] + 'Scroll');
+                    note.animation.addByPrefix('Note', 'blue0');
+                    note.animation.play('Note');
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*
@@ -55,8 +53,8 @@ function onCreatePost() {
                 }
             case 2:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix(colArray[3] + 'Scroll', colArray[3] + '0');
-                    note.animation.play(colArray[3] + 'Scroll');
+                    note.animation.addByPrefix('Note', 'red0');
+                    note.animation.play('Note');
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*

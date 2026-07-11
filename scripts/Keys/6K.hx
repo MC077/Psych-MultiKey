@@ -4,17 +4,16 @@ import backend.ClientPrefs;
 
 import objects.StrumNote;
 
-var colArray:String = ['purple', 'blue', 'green', 'red'];
-
 function onCreatePost() {
     for (note in unspawnNotes) {
         if (!note.isSustainNote) note.scale.set(0.6, 0.6);
         else note.scale.x = 0.6; //do it this way to avoid breaking sustains
+        note.offsetX += 7;
         switch(note.noteData) {
             case 0:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix(colArray[note.noteData] + 'Scroll', colArray[note.noteData] + '0');
-                    note.animation.play(colArray[note.noteData] + 'Scroll');
+                    note.animation.addByPrefix('Note', 'purple0');
+                    note.animation.play('Note');
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null) {
@@ -36,8 +35,8 @@ function onCreatePost() {
                 }
             case 1:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix(colArray[note.noteData] + 'Scroll', colArray[note.noteData] + '0');
-                    note.animation.play(colArray[note.noteData] + 'Scroll');
+                    note.animation.addByPrefix('Note', 'blue0');
+                    note.animation.play('Note');
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null) {
@@ -59,8 +58,8 @@ function onCreatePost() {
                 }
             case 2:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix(colArray[3] + 'Scroll', colArray[3] + '0');
-                    note.animation.play(colArray[3] + 'Scroll');
+                    note.animation.addByPrefix('Note', 'red0');
+                    note.animation.play('Note');
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null) {
@@ -82,8 +81,8 @@ function onCreatePost() {
                 }
             case 3:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix(colArray[0] + 'Scroll', colArray[0] + '0');
-                    note.animation.play(colArray[0] + 'Scroll');
+                    note.animation.addByPrefix('Note', 'purple0');
+                    note.animation.play('Note');
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null) {
@@ -105,8 +104,8 @@ function onCreatePost() {
                 }
             case 4:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix(colArray[2] + 'Scroll', colArray[2] + '0');
-                    note.animation.play(colArray[2] + 'Scroll');
+                    note.animation.addByPrefix('Note', 'green0');
+                    note.animation.play('Note');
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null) {
@@ -128,8 +127,8 @@ function onCreatePost() {
                 }
             case 5:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix(colArray[3] + 'Scroll', colArray[3] + '0');
-                    note.animation.play(colArray[3] + 'Scroll');
+                    note.animation.addByPrefix('Note', 'red0');
+                    note.animation.play('Note');
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null) {
@@ -150,6 +149,7 @@ function onCreatePost() {
                     note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
                 }
         }
+        note.updateHitbox();
         note.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
         note.noteSplashData.enabled = !PlayState.SONG.disableNoteRGB;
     }

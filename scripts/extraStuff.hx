@@ -38,6 +38,8 @@ function onCreate() {
             scriptPath = 'scripts/Keys/7K.hx';
         case 8:
             scriptPath = 'scripts/Keys/8K.hx';
+        case 9:
+            scriptPath = 'scripts/Keys/9K.hx';
         default:
             if (keyCount != 4) {
                 game.addTextToDebug("No valid keycount found!", 0xFFFF0000);
@@ -162,6 +164,8 @@ function loadKeyBinds() {
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['SPACE', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
         case 8:
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['F', 'null'], ['SPACE', 'null'], ['H', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
+        case 9:
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['F', 'null'], ['SPACE', 'null'], ['H', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
     }
 }
 
@@ -248,9 +252,10 @@ function updateNoteDatas() {
 }
 
 function getMultiTexture(texture:String):String {
-    if (Paths.fileExists('images/' + texture + '-multi.png', 'IMAGE')) return texture + '-multi';
+    debugPrint(texture);
+    if (Paths.fileExists('images/noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi.png', 'IMAGE') && (texture == '' || texture == null)) return 'noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi';
+    else if (Paths.fileExists('images/' + texture + '-multi.png', 'IMAGE')) return texture + '-multi';
     else return 'noteSkins/NOTE_assets-multi';
-
 }
 
 function checkPressed(key:String):Array<Bool> //because i cant do any fancy stuff i guess
