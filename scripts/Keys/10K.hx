@@ -7,13 +7,55 @@ import objects.StrumNote;
 function onCreatePost() {
     for (note in unspawnNotes) {
         var name:String = note.animation.curAnim.name;
-        if (!note.isSustainNote) note.scale.set(0.5, 0.5);
-        else note.scale.x = 0.5; //do it this way to avoid breaking sustains
+        note.reloadNote(callOnHScript('getMultiTexture', [note.texture]));
+        if (!note.isSustainNote) note.scale.set(0.35, 0.35);
+        else {
+            note.scale.x = 0.35; //do it this way to avoid breaking sustains
+            note.offsetY -= 24;
+        }
         switch(note.noteData) {
             case 0:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix('Note', 'purple0');
+                    note.animation.addByPrefix('Note', 'left 2');
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 2', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 2', 24, true);
+                        note.animation.play("hold");
+                    }
+                }
+                if (note.extraData.get('canChangeRGB') == null) {
+                    /*
+                    For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
+                    For Haxe: note.extraData.set('canChangeRGB', false);
+
+                    use these to DISABLE note rgb changes
+                    */
+
+                    note.extraData.set('canChangeRGB', true);
+                    note.rgbShader.r = 0xFFFF0000;
+                    note.rgbShader.g = 0xFFFFFFFF;
+                    note.rgbShader.b = 0xFF7F0000;
+
+                    note.noteSplashData.r = 0xFFFF0000;
+                    note.noteSplashData.g = 0xFFFFFFFF;
+                    note.noteSplashData.b = 0xFF7F0000;
+                }
+            case 1:
+                if (!note.isSustainNote) {
+                    note.animation.addByPrefix('Note', 'left 1');
+                    note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 1', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 1', 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*
@@ -32,10 +74,18 @@ function onCreatePost() {
                     note.noteSplashData.g = ClientPrefs.data.arrowRGB[0][1];
                     note.noteSplashData.b = ClientPrefs.data.arrowRGB[0][2];
                 }
-            case 1:
+            case 2:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix('Note', 'blue0');
+                    note.animation.addByPrefix('Note', 'down 1');
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 1', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 1', 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*
@@ -54,10 +104,18 @@ function onCreatePost() {
                     note.noteSplashData.g = ClientPrefs.data.arrowRGB[1][1];
                     note.noteSplashData.b = ClientPrefs.data.arrowRGB[1][2];
                 }
-            case 2:
+            case 3:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix('Note', 'green0');
+                    note.animation.addByPrefix('Note', 'up 1');
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 1', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 1', 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*
@@ -76,10 +134,18 @@ function onCreatePost() {
                     note.noteSplashData.g = ClientPrefs.data.arrowRGB[2][1];
                     note.noteSplashData.b = ClientPrefs.data.arrowRGB[2][2];
                 }
-            case 3:
+            case 4:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix('Note', 'red0');
+                    note.animation.addByPrefix('Note', 'right 1');
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 1', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 1', 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*
@@ -98,10 +164,18 @@ function onCreatePost() {
                     note.noteSplashData.g = ClientPrefs.data.arrowRGB[3][1];
                     note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
                 }
-            case 4:
+            case 5:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix('Note', 'purple0');
+                    note.animation.addByPrefix('Note', 'left 1');
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 1', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 1', 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*
@@ -120,10 +194,18 @@ function onCreatePost() {
                     note.noteSplashData.g = 0xFFFFFFFF;
                     note.noteSplashData.b = 0xFF993300;
                 }
-            case 5:
+            case 6:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix('Note', 'blue0');
+                    note.animation.addByPrefix('Note', 'down 1');
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 1', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 1', 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*
@@ -142,10 +224,18 @@ function onCreatePost() {
                     note.noteSplashData.g = 0xFFFFFFFF;
                     note.noteSplashData.b = 0xFF3B177D;
                 }
-            case 6:
+            case 7:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix('Note', 'green0');
+                    note.animation.addByPrefix('Note', 'up 1');
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 1', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 1', 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*
@@ -164,10 +254,18 @@ function onCreatePost() {
                     note.noteSplashData.g = 0xFFFFFFFF;
                     note.noteSplashData.b = 0xFF660000;
                 }
-            case 7:
+            case 8:
                 if (!note.isSustainNote) {
-                    note.animation.addByPrefix('Note', 'red0');
+                    note.animation.addByPrefix('Note', 'right 1');
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 1', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 1', 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null) {
                     /*
@@ -186,6 +284,36 @@ function onCreatePost() {
                     note.noteSplashData.g = 0xFFFFFFFF;
                     note.noteSplashData.b = 0xFF000066;
                 }
+            case 9:
+                if (!note.isSustainNote) {
+                    note.animation.addByPrefix('Note', 'right 2');
+                    note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 2', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 2', 24, true);
+                        note.animation.play("hold");
+                    }
+                }
+                if (note.extraData.get('canChangeRGB') == null) {
+                    /*
+                    For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
+                    For Haxe: note.extraData.set('canChangeRGB', false);
+
+                    use these to DISABLE note rgb changes
+                    */
+
+                    note.extraData.set('canChangeRGB', true);
+                    note.rgbShader.r = 0xFF1E29FF;
+                    note.rgbShader.g = 0xFFFFFFFF;
+                    note.rgbShader.b = 0xFF00067F;
+
+                    note.noteSplashData.r = 0xFF1E29FF;
+                    note.noteSplashData.g = 0xFFFFFFFF;
+                    note.noteSplashData.b = 0xFF00067F;
+                }
         }
         note.updateHitbox();
         note.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
@@ -194,92 +322,109 @@ function onCreatePost() {
 }
 
 function generateStaticArrows(player:Int) {
-	var strumLineX:Float = ClientPrefs.data.middleScroll ? -367.5 : -37.5;
+	var strumLineX:Float = ClientPrefs.data.middleScroll ? -334 : -16.5;
 	var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
 
-	for (i in 0...8)
+	for (i in 0...10)
 	{
 		var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, 0, player);
 		babyArrow.downScroll = ClientPrefs.data.downScroll;
-        babyArrow.scale.set(0.5, 0.5);
+        babyArrow.texture = callOnHScript('getMultiTexture', [babyArrow.texture]);
+        babyArrow.scale.set(0.35, 0.35);
 
         switch(i) {
             case 0:
-                babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+                babyArrow.animation.addByPrefix('static', 'arrowLEFT 2');
+                babyArrow.animation.addByPrefix('confirm', 'left confirm 2', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'left press 2', 24, false);
+
+                babyArrow.rgbShader.r = 0xFFFF0000;
+                babyArrow.rgbShader.g = 0xFFFFFFFF;
+                babyArrow.rgbShader.b = 0xFF7F0000;
+            case 1:
+                babyArrow.animation.addByPrefix('static', 'arrowLEFT 1');
+                babyArrow.animation.addByPrefix('confirm', 'left confirm 1', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'left press 1', 24, false);
 
                 babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
                 babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
                 babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[0][2];
-            case 1:
-                babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+            case 2:
+                babyArrow.animation.addByPrefix('static', 'arrowDOWN 1');
+                babyArrow.animation.addByPrefix('confirm', 'down confirm 1', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'down press 1', 24, false);
 
                 babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[1][0];
                 babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[1][1];
                 babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[1][2];
-            case 2:
-                babyArrow.animation.addByPrefix('static', 'arrowUP');
-                babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+            case 3:
+                babyArrow.animation.addByPrefix('static', 'arrowUP 1');
+                babyArrow.animation.addByPrefix('confirm', 'up confirm 1', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'up press 1', 24, false);
 
                 babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[2][0];
                 babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[2][1];
                 babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[2][2];
-            case 3:
-                babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+            case 4:
+                babyArrow.animation.addByPrefix('static', 'arrowRIGHT 1');
+                babyArrow.animation.addByPrefix('confirm', 'right confirm 1', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'right press 1', 24, false);
 
                 babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
                 babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
                 babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
-            case 4:
-                babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+            case 5:
+                babyArrow.animation.addByPrefix('static', 'arrowLEFT 1');
+                babyArrow.animation.addByPrefix('confirm', 'left confirm 1', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'left press 1', 24, false);
 
                 babyArrow.rgbShader.r = 0xFFFFFF00;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
                 babyArrow.rgbShader.b = 0xFF993300;
-            case 5:
-                babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+            case 6:
+                babyArrow.animation.addByPrefix('static', 'arrowDOWN 1');
+                babyArrow.animation.addByPrefix('confirm', 'down confirm 1', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'down press 1', 24, false);
 
                 babyArrow.rgbShader.r = 0xFF8B4AFF;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
                 babyArrow.rgbShader.b = 0xFF3B177D;
-            case 6:
-                babyArrow.animation.addByPrefix('static', 'arrowUP');
-                babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+            case 7:
+                babyArrow.animation.addByPrefix('static', 'arrowUP 1');
+                babyArrow.animation.addByPrefix('confirm', 'up confirm 1', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'up press 1', 24, false);
 
                 babyArrow.rgbShader.r = 0xFFFF0000;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
                 babyArrow.rgbShader.b = 0xFF660000;
-            case 7:
-                babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+            case 8:
+                babyArrow.animation.addByPrefix('static', 'arrowRIGHT 1');
+                babyArrow.animation.addByPrefix('confirm', 'right confirm 1', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'right press 1', 24, false);
 
                 babyArrow.rgbShader.r = 0xFF0033FF;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
                 babyArrow.rgbShader.b = 0xFF000066;
+            case 9:
+                babyArrow.animation.addByPrefix('static', 'arrowRIGHT 2');
+                babyArrow.animation.addByPrefix('confirm', 'right confirm 2', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'right press 2', 24, false);
+
+                babyArrow.rgbShader.r = 0xFF1E29FF;
+                babyArrow.rgbShader.g = 0xFFFFFFFF;
+                babyArrow.rgbShader.b = 0xFF00067F;
         }
         babyArrow.noteData = i;
         babyArrow.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
         babyArrow.playAnim('static');
-        babyArrow.x -= 35 * i;
+        babyArrow.x -= 55 * i;
         babyArrow.updateHitbox();
 		strumLineNotes.add(babyArrow);
         if (player > 0) playerStrums.add(babyArrow);
         else opponentStrums.add(babyArrow);
 		babyArrow.playerPosition();
 
-        if (ClientPrefs.data.middleScroll && player == 0) if (i > 3) babyArrow.x += 950; else babyArrow.x += 330;
+        if (ClientPrefs.data.middleScroll && player == 0) if (i > 4) babyArrow.x += 940; else babyArrow.x += 325;
 
         callOnHScript('tweenNoteIn', [player, babyArrow]);
 	}
@@ -304,18 +449,22 @@ function goodNoteHit(note:Note) {
         case 0:
             anim = anim + singDirections[0];
         case 1:
-            anim = anim + singDirections[1];
-        case 2:
-            anim = anim + singDirections[2];
-        case 3:
-            anim = anim + singDirections[3];
-        case 4:
             anim = anim + singDirections[0];
-        case 5:
+        case 2:
             anim = anim + singDirections[1];
-        case 6:
+        case 3:
             anim = anim + singDirections[2];
+        case 4:
+            anim = anim + singDirections[3];
+        case 5:
+            anim = anim + singDirections[0];
+        case 6:
+            anim = anim + singDirections[1];
         case 7:
+            anim = anim + singDirections[2];
+        case 8:
+            anim = anim + singDirections[3];
+        case 9:
             anim = anim + singDirections[3];
     }
 
@@ -330,18 +479,22 @@ function noteMiss(note:Note) {
         case 0:
             anim = anim + singDirections[0] + 'miss';
         case 1:
-            anim = anim + singDirections[1] + 'miss';
-        case 2:
-            anim = anim + singDirections[2] + 'miss';
-        case 3:
-            anim = anim + singDirections[3] + 'miss';
-        case 4:
             anim = anim + singDirections[0] + 'miss';
-        case 5:
+        case 2:
             anim = anim + singDirections[1] + 'miss';
-        case 6:
+        case 3:
             anim = anim + singDirections[2] + 'miss';
+        case 4:
+            anim = anim + singDirections[3] + 'miss';
+        case 5:
+            anim = anim + singDirections[0] + 'miss';
+        case 6:
+            anim = anim + singDirections[1] + 'miss';
         case 7:
+            anim = anim + singDirections[2] + 'miss';
+        case 8:
+            anim = anim + singDirections[3] + 'miss';
+        case 9:
             anim = anim + singDirections[3] + 'miss';
     }
     
@@ -356,18 +509,22 @@ function opponentNoteHit(note:Note) {
         case 0:
             anim = anim + singDirections[0];
         case 1:
-            anim = anim + singDirections[1];
-        case 2:
-            anim = anim + singDirections[2];
-        case 3:
-            anim = anim + singDirections[3];
-        case 4:
             anim = anim + singDirections[0];
-        case 5:
+        case 2:
             anim = anim + singDirections[1];
-        case 6:
+        case 3:
             anim = anim + singDirections[2];
+        case 4:
+            anim = anim + singDirections[3];
+        case 5:
+            anim = anim + singDirections[0];
+        case 6:
+            anim = anim + singDirections[1];
         case 7:
+            anim = anim + singDirections[2];
+        case 8:
+            anim = anim + singDirections[3];
+        case 9:
             anim = anim + singDirections[3];
     }
 
