@@ -8,9 +8,9 @@ function onCreatePost() {
     for (note in unspawnNotes) {
         var name:String = note.animation.curAnim.name;
         note.reloadNote(callOnHScript('getMultiTexture', [note.texture]));
-        if (!note.isSustainNote) note.scale.set(0.35, 0.35);
+        if (!note.isSustainNote) note.scale.set(0.3, 0.3);
         else {
-            note.scale.x = 0.35; //do it this way to avoid breaking sustains
+            note.scale.x = 0.3; //do it this way to avoid breaking sustains
             note.offsetY -= 24;
         }
         switch(note.noteData) {
@@ -196,6 +196,36 @@ function onCreatePost() {
                 }
             case 6:
                 if (!note.isSustainNote) {
+                    note.animation.addByPrefix('Note', 'middle 1');
+                    note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.addByPrefix('holdend', 'hold end 1', 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.addByPrefix('hold', 'hold 1', 24, true);
+                        note.animation.play("hold");
+                    }
+                }
+                if (note.extraData.get('canChangeRGB') == null) {
+                    /*
+                    For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
+                    For Haxe: note.extraData.set('canChangeRGB', false);
+
+                    use these to DISABLE note rgb changes
+                    */
+
+                    note.extraData.set('canChangeRGB', true);
+                    note.rgbShader.r = 0xFFCCCCCC;
+                    note.rgbShader.g = 0xFFFFFFFF;
+                    note.rgbShader.b = 0xFF3E3E3E;
+
+                    note.noteSplashData.r = 0xFFCCCCCC;
+                    note.noteSplashData.g = 0xFFFFFFFF;
+                    note.noteSplashData.b = 0xFF3E3E3E;
+                }
+            case 7:
+                if (!note.isSustainNote) {
                     note.animation.addByPrefix('Note', 'left 1');
                     note.animation.play('Note');
                 } else {
@@ -224,7 +254,7 @@ function onCreatePost() {
                     note.noteSplashData.g = 0xFFFFFFFF;
                     note.noteSplashData.b = 0xFF993300;
                 }
-            case 7:
+            case 8:
                 if (!note.isSustainNote) {
                     note.animation.addByPrefix('Note', 'down 1');
                     note.animation.play('Note');
@@ -254,7 +284,7 @@ function onCreatePost() {
                     note.noteSplashData.g = 0xFFFFFFFF;
                     note.noteSplashData.b = 0xFF3B177D;
                 }
-            case 8:
+            case 9:
                 if (!note.isSustainNote) {
                     note.animation.addByPrefix('Note', 'up 1');
                     note.animation.play('Note');
@@ -284,7 +314,7 @@ function onCreatePost() {
                     note.noteSplashData.g = 0xFFFFFFFF;
                     note.noteSplashData.b = 0xFF660000;
                 }
-            case 9:
+            case 10:
                 if (!note.isSustainNote) {
                     note.animation.addByPrefix('Note', 'up 2');
                     note.animation.play('Note');
@@ -314,7 +344,7 @@ function onCreatePost() {
                     note.noteSplashData.g = 0xFFFFFFFF;
                     note.noteSplashData.b = 0xFF007F0E;
                 }
-            case 10:
+            case 11:
                 if (!note.isSustainNote) {
                     note.animation.addByPrefix('Note', 'right 1');
                     note.animation.play('Note');
@@ -344,7 +374,7 @@ function onCreatePost() {
                     note.noteSplashData.g = 0xFFFFFFFF;
                     note.noteSplashData.b = 0xFF000066;
                 }
-            case 11:
+            case 12:
                 if (!note.isSustainNote) {
                     note.animation.addByPrefix('Note', 'right 2');
                     note.animation.play('Note');
@@ -382,15 +412,15 @@ function onCreatePost() {
 }
 
 function generateStaticArrows(player:Int) {
-	var strumLineX:Float = ClientPrefs.data.middleScroll ? -363 : -41.5;
+	var strumLineX:Float = ClientPrefs.data.middleScroll ? -363 : -36.5;
 	var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
 
-	for (i in 0...12)
+	for (i in 0...13)
 	{
 		var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, 0, player);
 		babyArrow.downScroll = ClientPrefs.data.downScroll;
         babyArrow.texture = callOnHScript('getMultiTexture', [babyArrow.texture]);
-        babyArrow.scale.set(0.35, 0.35);
+        babyArrow.scale.set(0.3, 0.3);
 
         switch(i) {
             case 0:
@@ -442,6 +472,14 @@ function generateStaticArrows(player:Int) {
                 babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
                 babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
             case 6:
+                babyArrow.animation.addByPrefix('static', 'arrowSPACE 1');
+                babyArrow.animation.addByPrefix('confirm', 'middle confirm 1', 24, false);
+                babyArrow.animation.addByPrefix('pressed', 'middle press 1', 24, false);
+
+                babyArrow.rgbShader.r = 0xFFCCCCCC;
+                babyArrow.rgbShader.g = 0xFFFFFFFF;
+                babyArrow.rgbShader.b = 0xFF3E3E3E;
+            case 7:
                 babyArrow.animation.addByPrefix('static', 'arrowLEFT 1');
                 babyArrow.animation.addByPrefix('confirm', 'left confirm 1', 24, false);
                 babyArrow.animation.addByPrefix('pressed', 'left press 1', 24, false);
@@ -449,7 +487,7 @@ function generateStaticArrows(player:Int) {
                 babyArrow.rgbShader.r = 0xFFFFFF00;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
                 babyArrow.rgbShader.b = 0xFF993300;
-            case 7:
+            case 8:
                 babyArrow.animation.addByPrefix('static', 'arrowDOWN 1');
                 babyArrow.animation.addByPrefix('confirm', 'down confirm 1', 24, false);
                 babyArrow.animation.addByPrefix('pressed', 'down press 1', 24, false);
@@ -457,7 +495,7 @@ function generateStaticArrows(player:Int) {
                 babyArrow.rgbShader.r = 0xFF8B4AFF;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
                 babyArrow.rgbShader.b = 0xFF3B177D;
-            case 8:
+            case 9:
                 babyArrow.animation.addByPrefix('static', 'arrowUP 1');
                 babyArrow.animation.addByPrefix('confirm', 'up confirm 1', 24, false);
                 babyArrow.animation.addByPrefix('pressed', 'up press 1', 24, false);
@@ -465,7 +503,7 @@ function generateStaticArrows(player:Int) {
                 babyArrow.rgbShader.r = 0xFFFF0000;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
                 babyArrow.rgbShader.b = 0xFF660000;
-            case 9:
+            case 10:
                 babyArrow.animation.addByPrefix('static', 'arrowUP 2');
                 babyArrow.animation.addByPrefix('confirm', 'up confirm 2', 24, false);
                 babyArrow.animation.addByPrefix('pressed', 'up press 2', 24, false);
@@ -473,7 +511,7 @@ function generateStaticArrows(player:Int) {
                 babyArrow.rgbShader.r = 0xFF00FF21;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
                 babyArrow.rgbShader.b = 0xFF007F0E;
-            case 10:
+            case 11:
                 babyArrow.animation.addByPrefix('static', 'arrowRIGHT 1');
                 babyArrow.animation.addByPrefix('confirm', 'right confirm 1', 24, false);
                 babyArrow.animation.addByPrefix('pressed', 'right press 1', 24, false);
@@ -481,7 +519,7 @@ function generateStaticArrows(player:Int) {
                 babyArrow.rgbShader.r = 0xFF0033FF;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
                 babyArrow.rgbShader.b = 0xFF000066;
-            case 11:
+            case 12:
                 babyArrow.animation.addByPrefix('static', 'arrowRIGHT 2');
                 babyArrow.animation.addByPrefix('confirm', 'right confirm 2', 24, false);
                 babyArrow.animation.addByPrefix('pressed', 'right press 2', 24, false);
@@ -493,14 +531,14 @@ function generateStaticArrows(player:Int) {
         babyArrow.noteData = i;
         babyArrow.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
         babyArrow.playAnim('static');
-        babyArrow.x -= 55 * i;
+        babyArrow.x -= 65 * i;
         babyArrow.updateHitbox();
 		strumLineNotes.add(babyArrow);
         if (player > 0) playerStrums.add(babyArrow);
         else opponentStrums.add(babyArrow);
 		babyArrow.playerPosition();
 
-        if (ClientPrefs.data.middleScroll && player == 0) if (i > 5) babyArrow.x += 940; else babyArrow.x += 320 - (5 * i);
+        if (ClientPrefs.data.middleScroll && player == 0) if (i > 6) babyArrow.x += 940; else babyArrow.x += 320 - (5 * i);
 
         callOnHScript('tweenNoteIn', [player, babyArrow]);
 	}
@@ -535,16 +573,18 @@ function goodNoteHit(note:Note) {
         case 5:
             anim = anim + singDirections[3];
         case 6:
-            anim = anim + singDirections[0];
-        case 7:
-            anim = anim + singDirections[1];
-        case 8:
             anim = anim + singDirections[2];
+        case 7:
+            anim = anim + singDirections[0];
+        case 8:
+            anim = anim + singDirections[1];
         case 9:
             anim = anim + singDirections[2];
         case 10:
-            anim = anim + singDirections[3];
+            anim = anim + singDirections[2];
         case 11:
+            anim = anim + singDirections[3];
+        case 12:
             anim = anim + singDirections[3];
     }
 
@@ -569,16 +609,18 @@ function noteMiss(note:Note) {
         case 5:
             anim = anim + singDirections[3] + 'miss';
         case 6:
-            anim = anim + singDirections[0] + 'miss';
-        case 7:
-            anim = anim + singDirections[1] + 'miss';
-        case 8:
             anim = anim + singDirections[2] + 'miss';
+        case 7:
+            anim = anim + singDirections[0] + 'miss';
+        case 8:
+            anim = anim + singDirections[1] + 'miss';
         case 9:
             anim = anim + singDirections[2] + 'miss';
         case 10:
-            anim = anim + singDirections[3] + 'miss';
+            anim = anim + singDirections[2] + 'miss';
         case 11:
+            anim = anim + singDirections[3] + 'miss';
+        case 12:
             anim = anim + singDirections[3] + 'miss';
     }
     
@@ -603,16 +645,18 @@ function opponentNoteHit(note:Note) {
         case 5:
             anim = anim + singDirections[3];
         case 6:
-            anim = anim + singDirections[0];
-        case 7:
-            anim = anim + singDirections[1];
-        case 8:
             anim = anim + singDirections[2];
+        case 7:
+            anim = anim + singDirections[0];
+        case 8:
+            anim = anim + singDirections[1];
         case 9:
             anim = anim + singDirections[2];
         case 10:
-            anim = anim + singDirections[3];
+            anim = anim + singDirections[2];
         case 11:
+            anim = anim + singDirections[3];
+        case 12:
             anim = anim + singDirections[3];
     }
 
