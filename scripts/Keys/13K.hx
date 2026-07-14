@@ -336,13 +336,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFF00FF21;
+                    note.rgbShader.r = 0xFFFF8300;
                     note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF007F0E;
+                    note.rgbShader.b = 0xFF7F3F00;
 
-                    note.noteSplashData.r = 0xFF00FF21;
+                    note.noteSplashData.r = 0xFFFF8300;
                     note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF007F0E;
+                    note.noteSplashData.b = 0xFF7F3F00;
                 }
             case 11:
                 if (!note.isSustainNote) {
@@ -396,13 +396,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFF1E29FF;
+                    note.rgbShader.r = 0xFF1EFF69;
                     note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF00067F;
+                    note.rgbShader.b = 0xFF007F2B;
 
-                    note.noteSplashData.r = 0xFF1E29FF;
+                    note.noteSplashData.r = 0xFF1EFF69;
                     note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF00067F;
+                    note.noteSplashData.b = 0xFF007F2B;
                 }
         }
         note.updateHitbox();
@@ -508,9 +508,9 @@ function generateStaticArrows(player:Int) {
                 babyArrow.animation.addByPrefix('confirm', 'up confirm 2', 24, false);
                 babyArrow.animation.addByPrefix('pressed', 'up press 2', 24, false);
 
-                babyArrow.rgbShader.r = 0xFF00FF21;
+                babyArrow.rgbShader.r = 0xFFFF8300;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
-                babyArrow.rgbShader.b = 0xFF007F0E;
+                babyArrow.rgbShader.b = 0xFF7F3F00;
             case 11:
                 babyArrow.animation.addByPrefix('static', 'arrowRIGHT 1');
                 babyArrow.animation.addByPrefix('confirm', 'right confirm 1', 24, false);
@@ -524,9 +524,9 @@ function generateStaticArrows(player:Int) {
                 babyArrow.animation.addByPrefix('confirm', 'right confirm 2', 24, false);
                 babyArrow.animation.addByPrefix('pressed', 'right press 2', 24, false);
 
-                babyArrow.rgbShader.r = 0xFF1E29FF;
+                babyArrow.rgbShader.r = 0xFF1EFF69;
                 babyArrow.rgbShader.g = 0xFFFFFFFF;
-                babyArrow.rgbShader.b = 0xFF00067F;
+                babyArrow.rgbShader.b = 0xFF007F2B;
         }
         babyArrow.noteData = i;
         babyArrow.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
