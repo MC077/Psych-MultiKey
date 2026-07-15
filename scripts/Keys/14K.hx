@@ -443,7 +443,7 @@ function onCreatePost() {
 }
 
 function generateStaticArrows(player:Int) {
-	var strumLineX:Float = ClientPrefs.data.middleScroll ? -363 : -50;
+	var strumLineX:Float = ClientPrefs.data.middleScroll ? -370 : -50;
 	var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
 
 	for (i in 0...14)
@@ -577,7 +577,7 @@ function generateStaticArrows(player:Int) {
         else opponentStrums.add(babyArrow);
 		babyArrow.playerPosition();
 
-        if (ClientPrefs.data.middleScroll && player == 0) if (i > 6) babyArrow.x += 940; else babyArrow.x += 320 - (5 * i);
+        if (ClientPrefs.data.middleScroll && player == 0) if (i > 6) babyArrow.x += 960; else babyArrow.x += 320;
 
         callOnHScript('tweenNoteIn', [player, babyArrow]);
 	}
