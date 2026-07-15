@@ -12,6 +12,7 @@ function onCreatePost() {
         else {
             note.scale.x = 0.3; //do it this way to avoid breaking sustains
             note.offsetY -= 24;
+            note.offsetX = note.offsetX * 0.3;
         }
         switch(note.noteData) {
             case 0:

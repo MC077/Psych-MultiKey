@@ -48,6 +48,8 @@ function onCreate() {
             scriptPath = 'scripts/Keys/12K.hx';
         case 13:
             scriptPath = 'scripts/Keys/13K.hx';
+        case 14:
+            scriptPath = 'scripts/Keys/14K.hx';
         default:
             if (keyCount != 4) {
                 game.addTextToDebug("No valid keycount found!", 0xFFFF0000);
@@ -63,7 +65,7 @@ function onCreate() {
 function onUpdate(elapsed:Float) {
     if (multiKey) {
         var controls:Array<Array<Array<Bool>>> = [];
-        var botPlay:Bool = ClientPrefs.getGameplaySetting('botplay'); //call it here for people in charting mode
+        var botPlay:Bool = game.cpuControlled; //call it here for people in charting mode
 
         for (i in 0...keyCount) {
             controls[i] = [];
@@ -154,6 +156,10 @@ function loadKeyBinds() {
     if (text != null && text != '') {
         var fakeArray:Array<String> = text.split('||');
         for (i in 0...keyCount) keyBinds.push(fakeArray[i].toUpperCase().split(','));
+    } else if (text == null || text == '' || keyBinds.length < keyCount) {
+        game.addTextToDebug("No valid multikey keybinds found! Enabling BotPlay.", 0xFFFF0000);
+        game.cpuControlled = true;
+        for (i in 0...keyCount) keyBinds.push(['null']);
     }
 
     switch(keyCount) {
@@ -185,11 +191,14 @@ function loadKeyBinds() {
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'A'], ['W', 'S'], ['E', 'D'], ['R', 'F'], ['T', 'G'], ['SPACE', 'null'],
                 ['Y', 'H'], ['U', 'J'], ['I', 'K'], ['O', 'L'], ['P', 'SEMICOLON']];
         case 12:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['W', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['A', 'null'],
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], 
                 ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['P', 'null'], ['L', 'null']];
         case 13:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['W', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['A', 'null'], ['SPACE', 'null'],
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['SPACE', 'null'],
                 ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['P', 'null'], ['L', 'null']];
+        case 14:
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'],
+                ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
     }
 }
 
