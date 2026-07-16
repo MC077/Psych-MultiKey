@@ -212,7 +212,7 @@ function loadKeyBinds() {
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['SPACE', 'null'],
                 ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
         case 16:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'] ['R', 'null'], ['T', 'null'],
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['T', 'null'],
                 ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
     }
 }
