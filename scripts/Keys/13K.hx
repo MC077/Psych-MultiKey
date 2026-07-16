@@ -11,8 +11,8 @@ function onCreatePost() {
         if (!note.isSustainNote) note.scale.set(0.3, 0.3);
         else {
             note.scale.x = 0.3; //do it this way to avoid breaking sustains
-            note.offsetY -= 24;
-            note.offsetX = note.offsetX * 0.3;
+            note.offsetY -= 32;
+            note.offsetX = ((note.width * 0.3) / 2) - 1.1;
         }
         switch(note.noteData) {
             case 0:
@@ -413,7 +413,7 @@ function onCreatePost() {
 }
 
 function generateStaticArrows(player:Int) {
-	var strumLineX:Float = ClientPrefs.data.middleScroll ? -363 : -36.5;
+	var strumLineX:Float = ClientPrefs.data.middleScroll ? -313 : 5;
 	var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
 
 	for (i in 0...13)
@@ -532,14 +532,14 @@ function generateStaticArrows(player:Int) {
         babyArrow.noteData = i;
         babyArrow.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
         babyArrow.playAnim('static');
-        babyArrow.x -= 65 * i;
+        babyArrow.x -= 72 * i;
         babyArrow.updateHitbox();
 		strumLineNotes.add(babyArrow);
         if (player > 0) playerStrums.add(babyArrow);
         else opponentStrums.add(babyArrow);
 		babyArrow.playerPosition();
 
-        if (ClientPrefs.data.middleScroll && player == 0) if (i > 6) babyArrow.x += 940; else babyArrow.x += 320 - (5 * i);
+        if (ClientPrefs.data.middleScroll && player == 0) if (i > 6) babyArrow.x += 940; else babyArrow.x += 300;
 
         callOnHScript('tweenNoteIn', [player, babyArrow]);
 	}

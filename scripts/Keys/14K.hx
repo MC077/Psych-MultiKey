@@ -11,8 +11,8 @@ function onCreatePost() {
         if (!note.isSustainNote) note.scale.set(0.275, 0.275);
         else {
             note.scale.x = 0.275; //do it this way to avoid breaking sustains
-            note.offsetY -= 36;
-            note.offsetX = note.offsetX * 0.275;
+            note.offsetY -= 35;
+            note.offsetX = ((note.width * 0.275) / 2) - 1.1;
         }
         switch(note.noteData) {
             case 0:
@@ -443,7 +443,7 @@ function onCreatePost() {
 }
 
 function generateStaticArrows(player:Int) {
-	var strumLineX:Float = ClientPrefs.data.middleScroll ? -370 : -50;
+	var strumLineX:Float = ClientPrefs.data.middleScroll ? -370 : -16;
 	var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
 
 	for (i in 0...14)
@@ -570,7 +570,7 @@ function generateStaticArrows(player:Int) {
         babyArrow.noteData = i;
         babyArrow.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;
         babyArrow.playAnim('static');
-        babyArrow.x -= 66 * i;
+        babyArrow.x -= 72 * i;
         babyArrow.updateHitbox();
 		strumLineNotes.add(babyArrow);
         if (player > 0) playerStrums.add(babyArrow);

@@ -11,8 +11,8 @@ function onCreatePost() {
         if (!note.isSustainNote) note.scale.set(0.4, 0.4);
         else {
             note.scale.x = 0.4; //do it this way to avoid breaking sustains
-            note.offsetY -= 24;
-            note.offsetX = note.offsetX * 0.4;
+            note.offsetY -= 25;
+            note.offsetX = ((note.width * 0.4) / 2) - 1.5;
         }
         switch(note.noteData) {
             case 0:

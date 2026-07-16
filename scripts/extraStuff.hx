@@ -50,6 +50,10 @@ function onCreate() {
             scriptPath = 'scripts/Keys/13K.hx';
         case 14:
             scriptPath = 'scripts/Keys/14K.hx';
+        case 15:
+            scriptPath = 'scripts/Keys/15K.hx';
+        case 16:
+            scriptPath = 'scripts/Keys/16K.hx';
         default:
             if (keyCount != 4) {
                 game.addTextToDebug("No valid keycount found!", 0xFFFF0000);
@@ -58,6 +62,11 @@ function onCreate() {
             return Function_Stop;
     }
 
+    if (!Paths.fileExists(scriptPath)) {
+        game.addTextToDebug("Script " + scriptPath + " could not be found! Disabling.", 0xFFFF0000);
+        multiKey = false;
+        return Function_Stop;
+    }
     loadKeyBinds();
     game.startHScriptsNamed(scriptPath);
 }
@@ -159,7 +168,7 @@ function loadKeyBinds() {
     } else if (text == null || text == '' || keyBinds.length < keyCount) {
         game.addTextToDebug("No valid multikey keybinds found! Enabling BotPlay.", 0xFFFF0000);
         game.cpuControlled = true;
-        for (i in 0...keyCount) keyBinds.push(['null']);
+        for (i in 0...keyCount) keyBinds[i] = ['null'];
     }
 
     switch(keyCount) {
@@ -199,6 +208,12 @@ function loadKeyBinds() {
         case 14:
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'],
                 ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+        case 15:
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['SPACE', 'null'],
+                ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+        case 16:
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'] ['R', 'null'], ['T', 'null'],
+                ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
     }
 }
 
