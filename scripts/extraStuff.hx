@@ -54,6 +54,10 @@ function onCreate() {
             scriptPath = 'scripts/Keys/15K.hx';
         case 16:
             scriptPath = 'scripts/Keys/16K.hx';
+        case 17:
+            scriptPath = 'scripts/Keys/17K.hx';
+        case 18:
+            scriptPath = 'scripts/Keys/18K.hx';
         default:
             if (keyCount != 4) {
                 game.addTextToDebug("No valid keycount found!", 0xFFFF0000);
@@ -214,6 +218,12 @@ function loadKeyBinds() {
         case 16:
             if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['T', 'null'],
                 ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+        case 17:
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['F', 'null'], ['SPACE', 'null'],
+                ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+        case 18:
+            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['F', 'null'], ['V', 'null'],
+                ['N', 'null'], ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
     }
 }
 
