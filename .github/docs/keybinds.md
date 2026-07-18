@@ -16,4 +16,4 @@ Don't worry! That just means your KeyBinds #K.txt is missing a keybind or two, j
 ## My Bind Isn't Working!
 You're probably using smth like 5, ;, or / as a bind. Unfortunantly haxe doesnt read them like that, and you have to spell them out for it to recognize it.
 
-![symbols](..images/Symbolex.png)
+![symbols](../images/Symbolex.png)
