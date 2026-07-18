@@ -45,4 +45,5 @@ Make sure the height of each set is the same! If not youll end up with some wonk
 You can put the spritesheet and xml in your noteskin mod! It will find it automatically, as long as its in the same place as the normal 4k texture. This also works for noteType textures! Just stick it in the same place!
 
 Your final spritesheet should look something like this:
+
 ![NoteSkinSprite](../images/spriteSheet.png)
