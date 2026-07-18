@@ -1,4 +1,4 @@
-![PsychMultiLogo](.github/Logo.png)
+![PsychMultiLogo](.github/images/Logo.png)
 
 # Psych MultiKey
 Converting Psych into a multikey engine.
@@ -10,5 +10,6 @@ Converting Psych into a multikey engine.
 # How To Use
 Guides on how to use this!
 
-# [NoteSkins](/.github/docs/noteskins.md)
-# [Charting](/.github/docs/noteskins.md)
+* [NoteSkins](/.github/docs/noteskins.md)
+* [Charting](/.github/docs/charting.md)
+* [Keybinds](/.github/docs/keybinds.md)
