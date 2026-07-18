@@ -1,7 +1,7 @@
 # How to chart
 
 ## Placing Notes
-So, "How do I chart multikey?" you may be asking. It's quite simple! You use the multiple noteTypes included! You have a +4, +8, +12, and +16, along with individual notes. the + increase the notes noteData by that amount, and the individual are just for if you want to chart a 4 key version for anyone who doesnt have the multikey mod installed.
+So, "How do I chart multikey?" you may be asking. It's quite simple! You use the multiple noteTypes included! You have a +4, +8, +12, and +16, along with individual notes. The + increase a notes noteData (which strum it's tied to) by that amount, and the individual are just for if you want to chart a 4 key version for anyone who doesnt have the multikey mod installed.
 
 ![notes](../images/noteDropDown.png)
 
