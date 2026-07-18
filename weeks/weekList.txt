@@ -1,9 +1,0 @@
-tutorial-multi
-week1-multi
-week2-multi
-week3-multi
-week4-multi
-week5-multi
-week6-multi
-week7-multi
-weekend1-multi
