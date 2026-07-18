@@ -11,5 +11,6 @@ Converting Psych into a multikey engine.
 Guides on how to use this!
 
 * [NoteSkins](/.github/docs/noteskins.md)
+* [NoteTypes](/.github/docs/notetypes.md)
 * [Charting](/.github/docs/charting.md)
 * [Keybinds](/.github/docs/keybinds.md)
