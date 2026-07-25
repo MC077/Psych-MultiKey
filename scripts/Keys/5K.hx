@@ -5,6 +5,7 @@ import backend.ClientPrefs;
 import objects.StrumNote;
 
 function onCreatePost() {
+    callOnHScript('updateNoteDatas');
     for (note in unspawnNotes) {
         var name:String = note.animation.curAnim.name;
         note.reloadNote(callOnHScript('getMultiTexture', [note.texture]));
@@ -235,7 +236,7 @@ function generateStaticArrows(player:Int) {
 
         callOnHScript('tweenNoteIn', [player, babyArrow]);
 	}
-    callOnHScript('updateNoteDatas');
+    
 }
 
 function onCountdownStarted() {

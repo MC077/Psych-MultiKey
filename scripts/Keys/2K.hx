@@ -5,6 +5,7 @@ import backend.ClientPrefs;
 import objects.StrumNote;
 
 function onCreatePost() {
+    callOnHScript('updateNoteDatas');
     for (note in unspawnNotes) {
         switch(note.noteData) {
             case 0:
@@ -105,7 +106,6 @@ function generateStaticArrows(player:Int) {
 
         callOnHScript('tweenNoteIn', [player, babyArrow]);
 	}
-    callOnHScript('updateNoteDatas');
 }
 
 function onCountdownStarted() {
