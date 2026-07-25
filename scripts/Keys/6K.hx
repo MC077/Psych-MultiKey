@@ -5,6 +5,7 @@ import backend.ClientPrefs;
 import objects.StrumNote;
 
 function onCreatePost() {
+    callOnHScript('updateNoteDatas');
     for (note in unspawnNotes) {
         if (!note.isSustainNote) note.scale.set(0.6, 0.6);
         else note.scale.x = 0.6; //do it this way to avoid breaking sustains
@@ -228,7 +229,7 @@ function generateStaticArrows(player:Int) {
 
         callOnHScript('tweenNoteIn', [player, babyArrow]);
 	}
-    callOnHScript('updateNoteDatas');
+    
 }
 
 function onCountdownStarted() {
