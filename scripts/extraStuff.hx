@@ -2,6 +2,7 @@ import tjson.TJSON;
 import flixel.util.FlxSort;
 import backend.Difficulty;
 import backend.MusicBeatState;
+import backend.Language;
 import backend.Song;
 import objects.Note;
 
@@ -79,6 +80,7 @@ function onUpdate(elapsed:Float) {
 
 function onCreatePost() {
     if (multiKey) {
+        game.botplayTxt.text = "MULTIKEY " + Language.getPhrase("Botplay").toUpperCase(); //this doesnt do anything different
         for (note in unspawnNotes) {
             if (note.isSustainNote) note.noteSplashData.disabled = true;
         }
@@ -140,63 +142,18 @@ function loadKeyBinds() {
             }
             
         }
-    } else if (text == null || text == '' || keyBinds.length < keyCount) {
-        game.addTextToDebug("No valid multikey keybinds found! Enabling BotPlay.", 0xFFFF0000);
-        game.cpuControlled = true;
-        for (i in 0...keyCount) keyBinds[i] = ['null'];
-    }
-
-    if (keyBinds == null || keyBinds.length < keyCount) {
-        switch(keyCount) {
-            case 1:
-                keyBinds = [['SPACE', 'null']];
-            case 2:
-                keyBinds = [['A', 'LEFT'], ['D', 'RIGHT']];
-            case 3:
-                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT']];
-            case 5:
-                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['SPACE', 'null'], 
-                    ['W', 'UP'], ['D', 'RIGHT']];
-            case 6:
-                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], 
-                    ['J', 'null'], ['K', 'null'], ['L', 'null']];
-            case 7:
-                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['SPACE', 'null'], 
-                    ['J', 'null'], ['K', 'null'], ['L', 'null']];
-            case 8:
-                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['F', 'null'],
-                    ['H', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
-            case 9:
-                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['F', 'null'], ['SPACE', 'null'], 
-                    ['H', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
-            case 10:
-                keyBinds = [['Q', 'A'], ['W', 'S'], ['E', 'D'], ['R', 'F'], ['T', 'G'], 
-                    ['Y', 'H'], ['U', 'J'], ['I', 'K'], ['O', 'L'], ['P', 'SEMICOLON']];
-            case 11:
-                keyBinds = [['Q', 'A'], ['W', 'S'], ['E', 'D'], ['R', 'F'], ['T', 'G'], ['SPACE', 'null'],
-                    ['Y', 'H'], ['U', 'J'], ['I', 'K'], ['O', 'L'], ['P', 'SEMICOLON']];
-            case 12:
-                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], 
-                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['P', 'null'], ['L', 'null']];
-            case 13:
-                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['SPACE', 'null'],
-                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['P', 'null'], ['L', 'null']];
-            case 14:
-                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'],
-                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
-            case 15:
-                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['SPACE', 'null'],
-                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
-            case 16:
-                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['T', 'null'],
-                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
-            case 17:
-                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['F', 'null'], ['SPACE', 'null'],
-                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
-            case 18:
-                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['F', 'null'], ['V', 'null'],
-                    ['N', 'null'], ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+    } else {
+        if (text == null) {
+            game.addTextToDebug("No " + keyCount + "K keybinds found! Enabling BotPlay.", 0xFFFF0000);
+            game.cpuControlled = true;
+        } else if (text == '') {
+            game.addTextToDebug("Your keybinds are empty! Enabling BotPlay.", 0xFFFF0000);
+            game.cpuControlled = true;
+        } else if (keyBinds.length < keyCount) {
+            game.addTextToDebug("Your keybinds are missing binds! Enabling BotPlay.", 0xFFFF0000);
+            game.cpuControlled = true;
         }
+        for (i in 0...keyCount) keyBinds[i] = ['null'];
     }
 }
 
