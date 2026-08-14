@@ -137,7 +137,6 @@ function loadKeyBinds() {
             keyBinds[i] = [];
             for (key in 0...fakeArray[i].split(',').length) {
                 keyBinds[i].push(fixKeybind(fakeArray[i].split(',')[key]));
-                debugPrint(keyBinds);
             }
             
         }
@@ -301,7 +300,6 @@ function getMultiTexture(texture:String, ?isPixelHold:Bool = false):String {
 }
 
 function fixKeybind(key:String):String {
-    debugPrint(StringTools.trim(key.toUpperCase()));
     switch(StringTools.trim(key.toUpperCase())) {
         case '.': return 'PERIOD';
         case '\\': return 'BACKSLASH';
@@ -322,7 +320,6 @@ function fixKeybind(key:String):String {
         case '-': return 'MINUS';
         case 'PRT SCR', 'PRTSCN': return 'PRINTSCREEN';
 
-
         case '1': return 'ONE';
         case '2': return 'TWO';
         case '3': return 'THREE';
@@ -333,6 +330,7 @@ function fixKeybind(key:String):String {
         case '8': return 'EIGHT';
         case '9': return 'NINE';
         case '0': return 'ZERO';
+
         default: return StringTools.trim(key.toUpperCase());
     }
 }
