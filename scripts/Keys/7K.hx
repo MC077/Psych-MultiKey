@@ -4,13 +4,15 @@ import backend.ClientPrefs;
 
 import objects.StrumNote;
 
+var scale:Float = 0.6;
+
 function onCreatePost() {
     callOnHScript('updateNoteDatas');
     for (note in unspawnNotes) {
         var name:String = note.animation.curAnim.name;
         note.reloadNote(callOnHScript('getMultiTexture', [note.texture]));
-        if (!note.isSustainNote) note.scale.set(0.6, 0.6);
-        else note.scale.x = 0.6; //do it this way to avoid breaking sustains
+        if (!note.isSustainNote) note.scale.set(scale, scale);
+        else note.scale.x = scale; //do it this way to avoid breaking sustains
         switch(note.noteData) {
             case 0:
                 if (!note.isSustainNote) {
@@ -26,7 +28,7 @@ function onCreatePost() {
                     }
                 }
                 
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -57,7 +59,7 @@ function onCreatePost() {
                     }
                 }
                 
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -88,7 +90,7 @@ function onCreatePost() {
                     }
                 }
                 
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -119,7 +121,7 @@ function onCreatePost() {
                     }
                 }
                 
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -150,7 +152,7 @@ function onCreatePost() {
                     }
                 }
                 
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -181,7 +183,7 @@ function onCreatePost() {
                     }
                 }
                 
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -212,7 +214,7 @@ function onCreatePost() {
                     }
                 }
                 
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -245,7 +247,7 @@ function generateStaticArrows(player:Int) {
 		var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, 0, player);
 		babyArrow.downScroll = ClientPrefs.data.downScroll;
         babyArrow.texture = callOnHScript('getMultiTexture', [babyArrow.texture]);
-        babyArrow.scale.set(0.6, 0.6);
+        babyArrow.scale.set(scale, scale);
 
         switch(i) {
             case 0:

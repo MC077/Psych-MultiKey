@@ -22,55 +22,20 @@ function onCreate() {
         multiKey = false;
         return Function_Stop;
     }
-
-    switch(keyCount) {
-        case 1:
-            scriptPath = 'scripts/Keys/1K.hx';
-        case 2:
-            scriptPath = 'scripts/Keys/2K.hx';
-        case 3:
-            scriptPath = 'scripts/Keys/3K.hx';
-        case 5:
-            scriptPath = 'scripts/Keys/5K.hx';
-        case 6:
-            scriptPath = 'scripts/Keys/6K.hx';
-        case 7:
-            scriptPath = 'scripts/Keys/7K.hx';
-        case 8:
-            scriptPath = 'scripts/Keys/8K.hx';
-        case 9:
-            scriptPath = 'scripts/Keys/9K.hx';
-        case 10:
-            scriptPath = 'scripts/Keys/10K.hx';
-        case 11:
-            scriptPath = 'scripts/Keys/11K.hx';
-        case 12:
-            scriptPath = 'scripts/Keys/12K.hx';
-        case 13:
-            scriptPath = 'scripts/Keys/13K.hx';
-        case 14:
-            scriptPath = 'scripts/Keys/14K.hx';
-        case 15:
-            scriptPath = 'scripts/Keys/15K.hx';
-        case 16:
-            scriptPath = 'scripts/Keys/16K.hx';
-        case 17:
-            scriptPath = 'scripts/Keys/17K.hx';
-        case 18:
-            scriptPath = 'scripts/Keys/18K.hx';
-        default:
-            if (keyCount != 4) {
-                game.addTextToDebug("No valid keycount found!", 0xFFFF0000);
-            }
-            multiKey = false;
-            return Function_Stop;
-    }
-
-    if (!Paths.fileExists(scriptPath)) {
-        game.addTextToDebug("Script " + scriptPath + " could not be found! Disabling.", 0xFFFF0000);
+    
+    if (keyCount == 4) {
         multiKey = false;
         return Function_Stop;
     }
+
+    scriptPath = 'scripts/Keys/' + keyCount + 'K' + (PlayState.isPixelStage ? '-pixel' : '') + '.hx';
+
+    if (!Paths.fileExists(scriptPath)) {
+        game.addTextToDebug("No valid keycount found!", 0xFFFF0000);
+        multiKey = false;
+        return Function_Stop;
+    }
+
     loadKeyBinds();
     game.startHScriptsNamed(scriptPath);
 }
@@ -240,7 +205,7 @@ function tweenNoteIn(player:Int, strum:StrumNote) {
 	if (!game.isStoryMode && !skipArrowStartTween)
 	{
 		strum.alpha = 0;
-		FlxTween.tween(strum, {alpha: targetAlpha}, 1, {ease: FlxEase.circOut,	startDelay: 0.5 + (0.2 * strum.noteData)});
+		FlxTween.tween(strum, {alpha: targetAlpha}, 1, {ease: FlxEase.circOut,	startDelay: (0.5 + (0.2 * strum.noteData)) / Std.parseFloat(ClientPrefs.getGameplaySetting('songspeed'))});
 	}
 	else
 	{
@@ -299,18 +264,29 @@ function invalidateNote(note:Note):Void {
 }
 
 function updateNoteDatas() {
+    var lastData:Int = 0;
     for (note in unspawnNotes) {
 
         if (note.noteType == 'Hurt Note') note.extraData.set('canChangeRGB', false);
 
         if (note.extraData.get("realData") != null) note.noteData = Std.parseInt(note.extraData.get("realData"));
 
-        if (note.noteData > keyCount - 1) note.noteData = 0;
+        switch(keyCount) { //trying to at least normalize it to be fun for less than 4 keys on charts not meant for it
+            case 2:
+                if (note.noteData == 1) note.noteData = 0;
+                if (note.noteData == 2) note.noteData = 1;
+                if (note.noteData == 3) note.noteData = 1;
+            case 3:
+                if (!note.isSustainNote && note.noteData == 3) lastData = FlxG.random.int(0, 2);
+                if (note.noteData == 3) note.noteData = lastData;
+            default:
+                if (note.noteData > keyCount - 1) note.noteData = 0;
+        }
     }
 }
 
-function getMultiTexture(texture:String):String {
-    if (Paths.fileExists('images/noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi.png', 'IMAGE') && (texture == '' || texture == null)) return 'noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi';
-    else if (Paths.fileExists('images/' + texture + '-multi.png', 'IMAGE')) return texture + '-multi';
-    else return 'noteSkins/NOTE_assets-multi'; //idk how youd fuck up this bad but just in case!
+function getMultiTexture(texture:String, ?isPixelHold:Bool = false):String {
+    if (Paths.fileExists('images/' + (PlayState.isPixelStage ? 'pixelUI/' : '') + 'noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi.png', 'IMAGE') && (texture == '' || texture == null)) return 'noteSkins/NOTE_assets' + (isPixelHold ? 'ENDS' : '') + Note.getNoteSkinPostfix()  + '-multi';
+    else if (Paths.fileExists('images/' + (PlayState.isPixelStage ? 'pixelUI/' : '') + texture + '-multi.png', 'IMAGE')) return texture + (isPixelHold ? 'ENDS' : '') + '-multi';
+    else return (PlayState.isPixelStage ? 'pixelUI/' : '') + 'noteSkins/NOTE_assets' + (isPixelHold ? 'ENDS' : '') + '-multi'; //idk how youd fuck up this bad but just in case!
 }

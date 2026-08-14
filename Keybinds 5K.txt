@@ -1,0 +1,1 @@
+A, LEFT || S, DOWN || SPACE, null || W, UP || D, RIGHT

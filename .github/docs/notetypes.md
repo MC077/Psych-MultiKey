@@ -9,7 +9,7 @@ This is simple little timmy! Lets say you have a custom note all ready to go, bu
 ## It Overwrites my RGB Colors!
 Just add:
 
-* For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChange', #, false)
+* For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChange', false, false)
 * For Haxe: note.extraData.set("canChange", false);
 
 ## It's Just Using The Default Noteskin!

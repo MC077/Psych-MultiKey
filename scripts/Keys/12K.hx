@@ -4,16 +4,18 @@ import backend.ClientPrefs;
 
 import objects.StrumNote;
 
+var scale:Float = 0.35;
+
 function onCreatePost() {
     callOnHScript('updateNoteDatas');
     for (note in unspawnNotes) {
         var name:String = note.animation.curAnim.name;
         note.reloadNote(callOnHScript('getMultiTexture', [note.texture]));
-        if (!note.isSustainNote) note.scale.set(0.35, 0.35);
+        if (!note.isSustainNote) note.scale.set(scale, scale);
         else {
-            note.scale.x = 0.35; //do it this way to avoid breaking sustains
+            note.scale.x = scale; //do it this way to avoid breaking sustains
             note.offsetY -= 30;
-            note.offsetX = ((note.width * 0.35) / 2) - 1.5;
+            note.offsetX = ((note.width * scale) / 2) - 1.5;
         }
         switch(note.noteData) {
             case 0:
@@ -29,7 +31,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -59,7 +61,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -89,7 +91,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -119,7 +121,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -149,7 +151,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -179,7 +181,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -209,7 +211,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -239,7 +241,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -269,7 +271,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -299,7 +301,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -329,7 +331,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -359,7 +361,7 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                if (note.extraData.get('canChangeRGB') == null) {
+                if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     /*
                     For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
                     For Haxe: note.extraData.set('canChangeRGB', false);
@@ -392,7 +394,7 @@ function generateStaticArrows(player:Int) {
 		var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, 0, player);
 		babyArrow.downScroll = ClientPrefs.data.downScroll;
         babyArrow.texture = callOnHScript('getMultiTexture', [babyArrow.texture]);
-        babyArrow.scale.set(0.35, 0.35);
+        babyArrow.scale.set(scale, scale);
 
         switch(i) {
             case 0:
