@@ -48,7 +48,7 @@ function onUpdate(elapsed:Float) {
         for (i in 0...keyCount) {
             controls[i] = [];
             for (key in 0...keyBinds[i].length) {
-                controls[i].push([keyboardJustPressed(StringTools.trim(keyBinds[i][key].toUpperCase())), keyboardPressed(StringTools.trim(keyBinds[i][key].toUpperCase()))]);
+                controls[i].push([keyboardJustPressed(StringTools.trim(keyBinds[i][key])), keyboardPressed(StringTools.trim(keyBinds[i][key]))]);
             }
 
             var shouldStatic:Bool = true;
@@ -133,62 +133,71 @@ function loadKeyBinds() {
     
     if (text != null && text != '') {
         var fakeArray:Array<String> = text.split('||');
-        for (i in 0...keyCount) keyBinds.push(fakeArray[i].toUpperCase().split(','));
+        for (i in 0...keyCount) {
+            keyBinds[i] = [];
+            for (key in 0...fakeArray[i].split(',').length) {
+                keyBinds[i].push(fixKeybind(fakeArray[i].split(',')[key]));
+                debugPrint(keyBinds);
+            }
+            
+        }
     } else if (text == null || text == '' || keyBinds.length < keyCount) {
         game.addTextToDebug("No valid multikey keybinds found! Enabling BotPlay.", 0xFFFF0000);
         game.cpuControlled = true;
         for (i in 0...keyCount) keyBinds[i] = ['null'];
     }
 
-    switch(keyCount) {
-        case 1:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['SPACE', 'null']];
-        case 2:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['D', 'RIGHT']];
-        case 3:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT']];
-        case 5:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['SPACE', 'null'], 
-                ['W', 'UP'], ['D', 'RIGHT']];
-        case 6:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], 
-                ['J', 'null'], ['K', 'null'], ['L', 'null']];
-        case 7:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['SPACE', 'null'], 
-                ['J', 'null'], ['K', 'null'], ['L', 'null']];
-        case 8:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['F', 'null'],
-                ['H', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
-        case 9:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['F', 'null'], ['SPACE', 'null'], 
-                ['H', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
-        case 10:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'A'], ['W', 'S'], ['E', 'D'], ['R', 'F'], ['T', 'G'], 
-                ['Y', 'H'], ['U', 'J'], ['I', 'K'], ['O', 'L'], ['P', 'SEMICOLON']];
-        case 11:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'A'], ['W', 'S'], ['E', 'D'], ['R', 'F'], ['T', 'G'], ['SPACE', 'null'],
-                ['Y', 'H'], ['U', 'J'], ['I', 'K'], ['O', 'L'], ['P', 'SEMICOLON']];
-        case 12:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], 
-                ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['P', 'null'], ['L', 'null']];
-        case 13:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['SPACE', 'null'],
-                ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['P', 'null'], ['L', 'null']];
-        case 14:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'],
-                ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
-        case 15:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['SPACE', 'null'],
-                ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
-        case 16:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['T', 'null'],
-                ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
-        case 17:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['F', 'null'], ['SPACE', 'null'],
-                ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
-        case 18:
-            if (keyBinds == null || keyBinds.length < keyCount) keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['F', 'null'], ['V', 'null'],
-                ['N', 'null'], ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+    if (keyBinds == null || keyBinds.length < keyCount) {
+        switch(keyCount) {
+            case 1:
+                keyBinds = [['SPACE', 'null']];
+            case 2:
+                keyBinds = [['A', 'LEFT'], ['D', 'RIGHT']];
+            case 3:
+                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT']];
+            case 5:
+                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['SPACE', 'null'], 
+                    ['W', 'UP'], ['D', 'RIGHT']];
+            case 6:
+                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], 
+                    ['J', 'null'], ['K', 'null'], ['L', 'null']];
+            case 7:
+                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['SPACE', 'null'], 
+                    ['J', 'null'], ['K', 'null'], ['L', 'null']];
+            case 8:
+                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['F', 'null'],
+                    ['H', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
+            case 9:
+                keyBinds = [['A', 'LEFT'], ['S', 'DOWN'], ['D', 'RIGHT'], ['F', 'null'], ['SPACE', 'null'], 
+                    ['H', 'null'], ['J', 'null'], ['K', 'null'], ['L', 'null']];
+            case 10:
+                keyBinds = [['Q', 'A'], ['W', 'S'], ['E', 'D'], ['R', 'F'], ['T', 'G'], 
+                    ['Y', 'H'], ['U', 'J'], ['I', 'K'], ['O', 'L'], ['P', 'SEMICOLON']];
+            case 11:
+                keyBinds = [['Q', 'A'], ['W', 'S'], ['E', 'D'], ['R', 'F'], ['T', 'G'], ['SPACE', 'null'],
+                    ['Y', 'H'], ['U', 'J'], ['I', 'K'], ['O', 'L'], ['P', 'SEMICOLON']];
+            case 12:
+                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], 
+                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['P', 'null'], ['L', 'null']];
+            case 13:
+                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['SPACE', 'null'],
+                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['P', 'null'], ['L', 'null']];
+            case 14:
+                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'],
+                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+            case 15:
+                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['R', 'null'], ['T', 'null'], ['SPACE', 'null'],
+                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+            case 16:
+                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['T', 'null'],
+                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+            case 17:
+                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['F', 'null'], ['SPACE', 'null'],
+                    ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+            case 18:
+                keyBinds = [['Q', 'null'], ['A', 'null'], ['W', 'null'], ['S', 'null'], ['E', 'null'], ['D', 'null'], ['R', 'null'], ['F', 'null'], ['V', 'null'],
+                    ['N', 'null'], ['Y', 'null'], ['U', 'null'], ['I', 'null'], ['J', 'null'], ['O', 'null'], ['K', 'null'], ['P', 'null'], ['L', 'null']];
+        }
     }
 }
 
@@ -289,4 +298,41 @@ function getMultiTexture(texture:String, ?isPixelHold:Bool = false):String {
     if (Paths.fileExists('images/' + (PlayState.isPixelStage ? 'pixelUI/' : '') + 'noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi.png', 'IMAGE') && (texture == '' || texture == null)) return 'noteSkins/NOTE_assets' + (isPixelHold ? 'ENDS' : '') + Note.getNoteSkinPostfix()  + '-multi';
     else if (Paths.fileExists('images/' + (PlayState.isPixelStage ? 'pixelUI/' : '') + texture + '-multi.png', 'IMAGE')) return texture + (isPixelHold ? 'ENDS' : '') + '-multi';
     else return (PlayState.isPixelStage ? 'pixelUI/' : '') + 'noteSkins/NOTE_assets' + (isPixelHold ? 'ENDS' : '') + '-multi'; //idk how youd fuck up this bad but just in case!
+}
+
+function fixKeybind(key:String):String {
+    debugPrint(StringTools.trim(key.toUpperCase()));
+    switch(StringTools.trim(key.toUpperCase())) {
+        case '.': return 'PERIOD';
+        case '\\': return 'BACKSLASH';
+        case '/': return 'SLASH';
+        case 'CAPS': return 'CAPSLOCK'; //yknow, just in case
+        case ',': return 'COMMA';
+        case "'": return 'QUOTE';
+        case ';': return 'SEMICOLON';
+        case 'CNTRL': return 'CONTROL';
+        case 'DEL': return 'DELETE';
+        case 'ESC': return 'ESCAPE';
+        case 'INS': return 'INSERT';
+        case '[': return 'LBRACKET';
+        case ']': return 'RBRACKET';
+        case 'NUM LK', 'NUMLK': return 'NUMLOCK';
+        case 'SCR LK', 'SCRLK': return 'SCROLL_LOCK';
+        case '+': return 'PLUS';
+        case '-': return 'MINUS';
+        case 'PRT SCR', 'PRTSCN': return 'PRINTSCREEN';
+
+
+        case '1': return 'ONE';
+        case '2': return 'TWO';
+        case '3': return 'THREE';
+        case '4': return 'FOUR';
+        case '5': return 'FIVE';
+        case '6': return 'SIX';
+        case '7': return 'SEVEN';
+        case '8': return 'EIGHT';
+        case '9': return 'NINE';
+        case '0': return 'ZERO';
+        default: return StringTools.trim(key.toUpperCase());
+    }
 }
