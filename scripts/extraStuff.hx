@@ -100,6 +100,35 @@ function onGhostTap(key:Int) {
     }
 }
 
+function goodNoteHit(note:Note) {
+    if (multiKey) {
+        var scale:Float = 6942067;
+
+        switch(keyCount) {
+            case 6, 7: scale = 0.6;
+            case 8: scale = 0.5;
+            case 9: scale = 0.4;
+            case 10, 11, 12, 13: scale = 0.35;
+            case 14, 15: scale = 0.275;
+            case 16, 17, 18: scale = 0.25;
+            default: scale = 1;
+        }
+
+        for (splash in game.grpNoteSplashes) {
+            splash.scale.set(splash.config.scale * scale, splash.config.scale * scale);
+
+            
+            var anim:String = splash.animation;
+		    var conf:NoteSplashAnim = splash.config.animations.get(anim);
+		    var offsets:Array<Float> = [0, 0];
+		    if (conf != null) offsets = conf.offsets;
+
+
+            splash.offset.set(offsets[0] * scale, offsets[1] * scale);
+        }
+    }
+}
+
 function opponentNoteHit(note:Note) {
     if (multiKey) {
         opponentStrums.members[note.noteData].playAnim('confirm', true);
