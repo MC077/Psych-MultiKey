@@ -23,13 +23,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
-                    note.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
-                    note.rgbShader.b = ClientPrefs.data.arrowRGB[0][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = ClientPrefs.data.arrowRGB[0][2];
 
-                    note.noteSplashData.r = ClientPrefs.data.arrowRGB[0][0];
-                    note.noteSplashData.g = ClientPrefs.data.arrowRGB[0][1];
-                    note.noteSplashData.b = ClientPrefs.data.arrowRGB[0][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = ClientPrefs.data.arrowRGB[0][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = ClientPrefs.data.arrowRGB[0][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = ClientPrefs.data.arrowRGB[0][2];
                 }
             case 1:
                 if (!note.isSustainNote) {
@@ -45,13 +45,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
-                    note.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
-                    note.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
 
-                    note.noteSplashData.r = ClientPrefs.data.arrowRGB[3][0];
-                    note.noteSplashData.g = ClientPrefs.data.arrowRGB[3][1];
-                    note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = ClientPrefs.data.arrowRGB[3][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = ClientPrefs.data.arrowRGB[3][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
                 }
         }
         note.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;

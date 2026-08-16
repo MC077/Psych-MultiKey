@@ -11,9 +11,7 @@ It's just as simple as everything else! In the mod folder youll find a bunch of 
 ![Binds](../images/3Binds.png)
 
 ## It Says Invalid Keybinds?
-Don't worry! That just means your KeyBinds #K.txt is missing a keybind or two, just double check your binds!
+Don't worry! That just means your KeyBinds/#K.txt is missing a keybind or two, just double check your binds!
 
 ## My Bind Isn't Working!
-You're probably using smth like 5, ;, or / as a bind. Unfortunantly haxe doesnt read them like that, and you have to spell them out for it to recognize it.
-
-![symbols](../images/Symbolex.png)
+The Bind you've set probably isn't compatible, submit a suggestion on the issues tab!

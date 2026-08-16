@@ -5,6 +5,7 @@ import backend.MusicBeatState;
 import backend.Language;
 import backend.Song;
 import objects.Note;
+import objects.NoteSplash;
 
 var keyBinds:Array<Array<String>> = [];
 var keyCount:Int = 0;
@@ -39,6 +40,7 @@ function onCreate() {
 
     loadKeyBinds();
     game.startHScriptsNamed(scriptPath);
+    MusicBeatState.getVariables().set('keyCount', keyCount); //just for people who use it for stuff
 }
 
 function onUpdate(elapsed:Float) {
@@ -131,7 +133,7 @@ function getChartString():String {
 }
 
 function loadKeyBinds() {
-    var text:String = Paths.getTextFromFile('Keybinds ' + keyCount + 'K.txt');
+    var text:String = Paths.getTextFromFile('Keybinds/' + keyCount + 'K.txt');
     
     if (text != null && text != '') {
         var fakeArray:Array<String> = text.split('||');
@@ -170,7 +172,7 @@ function tweenNoteIn(player:Int, strum:StrumNote) {
 	if (!game.isStoryMode && !skipArrowStartTween)
 	{
 		strum.alpha = 0;
-		FlxTween.tween(strum, {alpha: targetAlpha}, 1, {ease: FlxEase.circOut,	startDelay: (0.5 + (0.2 * strum.noteData)) / Std.parseFloat(ClientPrefs.getGameplaySetting('songspeed'))});
+		FlxTween.tween(strum, {alpha: targetAlpha}, 1, {ease: FlxEase.circOut,	startDelay: ((0.5 + (0.2 * strum.noteData) / (keyCount / 2)) / Std.parseFloat(ClientPrefs.getGameplaySetting('songspeed')) )});
 	}
 	else
 	{

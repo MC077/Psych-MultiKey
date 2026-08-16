@@ -32,13 +32,13 @@ function onCreatePost() {
             */
 
             note.extraData.set('canChangeRGB', true);
-            note.rgbShader.r = 0xFFCCCCCC;
-            note.rgbShader.g = 0xFFFFFFFF;
-            note.rgbShader.b = 0xFF3E3E3E;
+            if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFFCCCCCC;
+            if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
+            if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = 0xFF3E3E3E;
 
-            note.noteSplashData.r = 0xFFCCCCCC;
-            note.noteSplashData.g = 0xFFFFFFFF;
-            note.noteSplashData.b = 0xFF3E3E3E;
+            if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = 0xFFCCCCCC;
+            if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = 0xFFFFFFFF;
+            if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = 0xFF3E3E3E;
         }
         
         note.rgbShader.enabled = !PlayState.SONG.disableNoteRGB;

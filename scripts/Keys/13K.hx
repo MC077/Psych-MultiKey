@@ -40,13 +40,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFFFF0000;
-                    note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF7F0000;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFFFF0000;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = 0xFF7F0000;
 
-                    note.noteSplashData.r = 0xFFFF0000;
-                    note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF7F0000;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = 0xFFFF0000;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = 0xFF7F0000;
                 }
             case 1:
                 if (!note.isSustainNote) {
@@ -70,13 +70,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
-                    note.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
-                    note.rgbShader.b = ClientPrefs.data.arrowRGB[0][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = ClientPrefs.data.arrowRGB[0][2];
 
-                    note.noteSplashData.r = ClientPrefs.data.arrowRGB[0][0];
-                    note.noteSplashData.g = ClientPrefs.data.arrowRGB[0][1];
-                    note.noteSplashData.b = ClientPrefs.data.arrowRGB[0][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = ClientPrefs.data.arrowRGB[0][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = ClientPrefs.data.arrowRGB[0][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = ClientPrefs.data.arrowRGB[0][2];
                 }
             case 2:
                 if (!note.isSustainNote) {
@@ -100,13 +100,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFF1EFFFF;
-                    note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF007E7E;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFF1EFFFF;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = 0xFF007E7E;
 
-                    note.noteSplashData.r = 0xFF1EFFFF;
-                    note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF007E7E;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = 0xFF1EFFFF;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = 0xFF007E7E;
                 }
             case 3:
                 if (!note.isSustainNote) {
@@ -130,13 +130,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = ClientPrefs.data.arrowRGB[1][0];
-                    note.rgbShader.g = ClientPrefs.data.arrowRGB[1][1];
-                    note.rgbShader.b = ClientPrefs.data.arrowRGB[1][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[1][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[1][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = ClientPrefs.data.arrowRGB[1][2];
 
-                    note.noteSplashData.r = ClientPrefs.data.arrowRGB[1][0];
-                    note.noteSplashData.g = ClientPrefs.data.arrowRGB[1][1];
-                    note.noteSplashData.b = ClientPrefs.data.arrowRGB[1][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = ClientPrefs.data.arrowRGB[1][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = ClientPrefs.data.arrowRGB[1][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = ClientPrefs.data.arrowRGB[1][2];
                 }
             case 4:
                 if (!note.isSustainNote) {
@@ -160,13 +160,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = ClientPrefs.data.arrowRGB[2][0];
-                    note.rgbShader.g = ClientPrefs.data.arrowRGB[2][1];
-                    note.rgbShader.b = ClientPrefs.data.arrowRGB[2][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[2][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[2][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = ClientPrefs.data.arrowRGB[2][2];
 
-                    note.noteSplashData.r = ClientPrefs.data.arrowRGB[2][0];
-                    note.noteSplashData.g = ClientPrefs.data.arrowRGB[2][1];
-                    note.noteSplashData.b = ClientPrefs.data.arrowRGB[2][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = ClientPrefs.data.arrowRGB[2][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = ClientPrefs.data.arrowRGB[2][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = ClientPrefs.data.arrowRGB[2][2];
                 }
             case 5:
                 if (!note.isSustainNote) {
@@ -190,13 +190,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
-                    note.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
-                    note.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
 
-                    note.noteSplashData.r = ClientPrefs.data.arrowRGB[3][0];
-                    note.noteSplashData.g = ClientPrefs.data.arrowRGB[3][1];
-                    note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = ClientPrefs.data.arrowRGB[3][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = ClientPrefs.data.arrowRGB[3][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = ClientPrefs.data.arrowRGB[3][2];
                 }
             case 6:
                 if (!note.isSustainNote) {
@@ -220,13 +220,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFFCCCCCC;
-                    note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF3E3E3E;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFFCCCCCC;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = 0xFF3E3E3E;
 
-                    note.noteSplashData.r = 0xFFCCCCCC;
-                    note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF3E3E3E;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = 0xFFCCCCCC;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = 0xFF3E3E3E;
                 }
             case 7:
                 if (!note.isSustainNote) {
@@ -250,13 +250,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFFFFFF00;
-                    note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF993300;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFFFFFF00;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = 0xFF993300;
 
-                    note.noteSplashData.r = 0xFFFFFF00;
-                    note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF993300;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = 0xFFFFFF00;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = 0xFF993300;
                 }
             case 8:
                 if (!note.isSustainNote) {
@@ -280,13 +280,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFF8B4AFF;
-                    note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF3B177D;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFF8B4AFF;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = 0xFF3B177D;
 
-                    note.noteSplashData.r = 0xFF8B4AFF;
-                    note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF3B177D;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = 0xFF8B4AFF;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = 0xFF3B177D;
                 }
             case 9:
                 if (!note.isSustainNote) {
@@ -310,13 +310,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFFFF0000;
-                    note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF660000;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFFFF0000;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = 0xFF660000;
 
-                    note.noteSplashData.r = 0xFFFF0000;
-                    note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF660000;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = 0xFFFF0000;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = 0xFF660000;
                 }
             case 10:
                 if (!note.isSustainNote) {
@@ -340,13 +340,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFFFF8300;
-                    note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF7F3F00;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFFFF8300;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = 0xFF7F3F00;
 
-                    note.noteSplashData.r = 0xFFFF8300;
-                    note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF7F3F00;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = 0xFFFF8300;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = 0xFF7F3F00;
                 }
             case 11:
                 if (!note.isSustainNote) {
@@ -370,13 +370,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFF0033FF;
-                    note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF000066;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFF0033FF;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = 0xFF000066;
 
-                    note.noteSplashData.r = 0xFF0033FF;
-                    note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF000066;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = 0xFF0033FF;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = 0xFF000066;
                 }
             case 12:
                 if (!note.isSustainNote) {
@@ -400,13 +400,13 @@ function onCreatePost() {
                     */
 
                     note.extraData.set('canChangeRGB', true);
-                    note.rgbShader.r = 0xFF1EFF69;
-                    note.rgbShader.g = 0xFFFFFFFF;
-                    note.rgbShader.b = 0xFF007F2B;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFF1EFF69;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = 0xFF007F2B;
 
-                    note.noteSplashData.r = 0xFF1EFF69;
-                    note.noteSplashData.g = 0xFFFFFFFF;
-                    note.noteSplashData.b = 0xFF007F2B;
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = 0xFF1EFF69;
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = 0xFFFFFFFF;
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = 0xFF007F2B;
                 }
         }
         note.updateHitbox();
