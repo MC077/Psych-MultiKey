@@ -26,13 +26,6 @@ function onCreatePost() {
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
-                    /*
-                    For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
-                    For Haxe: note.extraData.set('canChangeRGB', false);
-
-                    use these to DISABLE note rgb changes
-                    */
-
                     note.extraData.set('canChangeRGB', true);
                     if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
                     if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
@@ -57,13 +50,6 @@ function onCreatePost() {
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
-                    /*
-                    For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
-                    For Haxe: note.extraData.set('canChangeRGB', false);
-
-                    use these to DISABLE note rgb changes
-                    */
-
                     note.extraData.set('canChangeRGB', true);
                     if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[1][0];
                     if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[1][1];
@@ -88,13 +74,6 @@ function onCreatePost() {
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
-                    /*
-                    For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
-                    For Haxe: note.extraData.set('canChangeRGB', false);
-
-                    use these to DISABLE note rgb changes
-                    */
-
                     note.extraData.set('canChangeRGB', true);
                     if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFFCCCCCC;
                     if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = 0xFFFFFFFF;
@@ -119,13 +98,6 @@ function onCreatePost() {
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
-                    /*
-                    For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
-                    For Haxe: note.extraData.set('canChangeRGB', false);
-
-                    use these to DISABLE note rgb changes
-                    */
-
                     note.extraData.set('canChangeRGB', true);
                     if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[2][0];
                     if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[2][1];
@@ -150,13 +122,6 @@ function onCreatePost() {
                 }
                 
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
-                    /*
-                    For Lua: setPropertyFromGroup('unspawnNotes', i, 'extraData.canChangeRGB', false, true)
-                    For Haxe: note.extraData.set('canChangeRGB', false);
-
-                    use these to DISABLE note rgb changes
-                    */
-
                     note.extraData.set('canChangeRGB', true);
                     if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
                     if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];

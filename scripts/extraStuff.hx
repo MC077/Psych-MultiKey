@@ -38,7 +38,6 @@ function onCreate() {
         return Function_Stop;
     }
 
-    game.botplayTxt.text = "MULTIKEY " + Language.getPhrase("Botplay").toUpperCase(); //this doesnt do anything different
     loadKeyBinds();
     game.startHScriptsNamed(scriptPath);
     MusicBeatState.getVariables().set('keyCount', keyCount); //just for people who use it for stuff
@@ -83,6 +82,7 @@ function onUpdate(elapsed:Float) {
 
 function onCreatePost() {
     if (multiKey) {
+        game.botplayTxt.text = "MULTIKEY " + Language.getPhrase("Botplay").toUpperCase(); //this doesnt do anything different
         for (note in unspawnNotes) {
             if (note.isSustainNote) note.noteSplashData.disabled = true;
         }
