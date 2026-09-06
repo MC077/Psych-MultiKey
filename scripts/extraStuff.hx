@@ -18,6 +18,8 @@ function onCreate() {
     var name:String = getChartString();
     var json:Dynamic = TJSON.parse(Paths.getTextFromFile(name));
 
+    setupRGB();
+
     if (json.song != null && json.song.keyCount != null) keyCount = json.song.keyCount;
     else if (json.keyCount != null) keyCount = json.keyCount;
     else {
@@ -323,4 +325,54 @@ function fixKeybind(key:String):String {
 
         default: return StringTools.trim(key.toUpperCase());
     }
+}
+
+function setupRGB() {
+//    for (i in 0...18) {
+//        switch(i) {
+//            case 4:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFCCCCCC, 0xFFFFFFFF, 0xFF3E3E3E];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFCCCCCC, 0xFFFBFBFB, 0xFF3E3E3E];
+//            case 5:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFFFFF00, 0xFFFFFFFF, 0xFF993300];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFFFE900, 0xFFFFFDF2, 0xFF993300];
+//            case 6:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF8B4AFF, 0xFFFFFFFF, 0xFF3B177D];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF8B4AFF, 0xFFF9F6FF, 0xFF3B177D];
+//            case 7:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFFF0000, 0xFFFFFFFF, 0xFF660000];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFFF1E1E, 0xFFFFF4F4, 0xFF6B0000];
+//            case 8:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF0033FF, 0xFFFFFFFF, 0xFF000066];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF0033FF, 0xFFF2F4FF, 0xFF000066];
+//            case 9:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFFF0000, 0xFFFFFFFF, 0xFF7F0000];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFFF1E1E, 0xFFF9F4F4, 0xFF7F0000];
+//            case 10:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF1EFFFF, 0xFFFFFFFF, 0xFF007E7E];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF1EFFFF, 0xFFFFFFFF, 0xFF007E7E];
+//            case 11:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF00FF21, 0xFFFFFFFF, 0xFF007F0E];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF22FF1E, 0xFFF2FFF1, 0xFF027F00];
+//            case 12:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF1E29FF, 0xFFFFFFFF, 0xFF00067F];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF1E29FF, 0xFFF3F4FF, 0xFF00067F];
+//            case 13:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFAF009E, 0xFFFFFFFF, 0xFF4A0043];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFAF009E, 0xFFFBF4FA, 0xFF7F0071];
+//            case 14:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF6200FF, 0xFFFFFFFF, 0xFF31007F];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF711EFF, 0xFFF8F4FF, 0xFF2F007F];
+//            case 15:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFA9FF1E, 0xFFFFFFFF, 0xFF4E7E00];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFADFF1E, 0xFFF8FFED, 0xFF507F00];
+//            case 16:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFFF8300, 0xFFFFFFFF, 0xFF7F3F00];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFFFF6D1E, 0xFFFFFAF5, 0xFF7F2D00];
+//            case 17:
+//                if (ClientPrefs.data.arrowRGB[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF1EFF69, 0xFFFFFFFF, 0xFF007F2B];
+//                if (ClientPrefs.data.arrowRGBPixel[i] == null) ClientPrefs.data.arrowRGB[i] = [0xFF1EFF66, 0xFFEDFFF3, 0xFF007F29];
+//
+//        }
+//    }
 }
