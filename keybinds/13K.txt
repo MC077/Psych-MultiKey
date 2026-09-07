@@ -1,1 +1,1 @@
-Q, null || A, null || W, null || E, null || R, null || T, null || SPACE, null || Y, null || U, null || I, null || O, null || P, null || L, null;
+Q, null || W, null || E, null || R, null || V, null || B, null || SPACE, null || N, null || M, null || U, null || I, null || O, null || P, null;
