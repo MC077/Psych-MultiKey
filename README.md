@@ -19,6 +19,6 @@ Guides on how to use this!
 
 # Video Examples!
 
-* [![Vs. Shaggy Psych Port (Chapter 1)](https://img.youtube.com/vi/XHosqB8I26c/maxresdefault.jpg)](https://www.youtube.com/watch?v=XHosqB8I26c)
-* [![Stress 6K](https://img.youtube.com/vi/zRtDpCCri6U/maxresdefault.jpg)](https://www.youtube.com/watch?v=zRtDpCCri6U)
+[![Vs. Shaggy Psych Port (Chapter 1)](https://img.youtube.com/vi/XHosqB8I26c/maxresdefault.jpg)](https://www.youtube.com/watch?v=XHosqB8I26c)
+[![Stress 6K](https://img.youtube.com/vi/zRtDpCCri6U/maxresdefault.jpg)](https://www.youtube.com/watch?v=zRtDpCCri6U)
 
