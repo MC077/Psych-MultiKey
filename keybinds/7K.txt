@@ -1,1 +1,1 @@
-A, LEFT || S, DOWN || D, RIGHT || SPACE, null || J, null || K, null || L, null
+S, LEFT || D, DOWN || F, RIGHT || SPACE, null || J, null || K, null || L, null
