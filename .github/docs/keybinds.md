@@ -8,6 +8,8 @@ Keybinds are what you use to hit the notes, like you do with wasd and the arrow 
 ## How Do I Change My Binds?
 It's just as simple as everything else! In the mod folder youll find a bunch of .txt files named KeyBinds #K.txt. Open up the one you want to edit, and youll find a bunch of keys separated by ||. These || indicate a spearation from the next strum, and the , inbetween two just splits the keybinds in them, so you can theoretically have as many binds as you want for any single strum.
 
+(P.S. If you play DFJK, make sure to check out the keybinds for 1-3K and 5K)
+
 ![Binds](../images/3Binds.png)
 
 ## It Says Invalid Keybinds?
