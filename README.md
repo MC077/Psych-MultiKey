@@ -6,7 +6,7 @@ Converting Psych into a multikey engine.
 ## Credits:
 * MC07 - Main Coder of Psychengine multikeys.
 * Leather Engine Team - Boost notes for the default noteskin.
-* piss master - Extra programming and advisor
+* piss master - Advisor and altering code
 * RoundCat - Artist
 
 # How To Use
