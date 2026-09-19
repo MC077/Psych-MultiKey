@@ -286,9 +286,12 @@ function updateNoteDatas() {
 }
 
 function getMultiTexture(texture:String, ?isPixelHold:Bool = false):String {
-    if (Paths.fileExists('images/' + (PlayState.isPixelStage ? 'pixelUI/' : '') + 'noteSkins/NOTE_assets' + Note.getNoteSkinPostfix() + '-multi.png', 'IMAGE') && (texture == '' || texture == null)) return 'noteSkins/NOTE_assets' + (isPixelHold ? 'ENDS' : '') + Note.getNoteSkinPostfix()  + '-multi';
-    else if (Paths.fileExists('images/' + (PlayState.isPixelStage ? 'pixelUI/' : '') + texture + '-multi.png', 'IMAGE')) return texture + (isPixelHold ? 'ENDS' : '') + '-multi';
-    else return (PlayState.isPixelStage ? 'pixelUI/' : '') + 'noteSkins/NOTE_assets' + (isPixelHold ? 'ENDS' : '') + '-multi'; //idk how youd fuck up this bad but just in case!
+    //debugPrint('checking');
+    if (Paths.fileExists('images/' + (PlayState.isPixelStage ? 'pixelUI/' : '') + 'noteSkins/NOTE_assets' + (isPixelHold ? 'ENDS' : '') + Note.getNoteSkinPostfix() + '-multi.png', 'IMAGE') && (texture == '' || texture == null)) 
+        return (PlayState.isPixelStage ? 'pixelUI/' : '') + 'noteSkins/NOTE_assets' + (isPixelHold ? 'ENDS' : '') + Note.getNoteSkinPostfix() + '-multi';
+    else if (Paths.fileExists('images/' + (PlayState.isPixelStage ? 'pixelUI/' : '') + texture + (isPixelHold ? 'ENDS' : '') + '-multi.png', 'IMAGE'))
+        return (PlayState.isPixelStage ? 'pixelUI/' : '') + texture + (isPixelHold ? 'ENDS' : '') + '-multi';
+    return (PlayState.isPixelStage ? 'pixelUI/' : '') + 'noteSkins/NOTE_assets' + (isPixelHold ? 'ENDS' : '') + '-multi'; //idk how youd fuck up this bad but just in case!
 }
 
 function fixKeybind(key:String):String {

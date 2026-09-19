@@ -10,6 +10,17 @@ function onCreatePost() {
     callOnHScript('updateNoteDatas');
     for (note in unspawnNotes) {
         var name:String = note.animation.curAnim.name;
+
+        var graphic;
+
+        if (!note.isSustainNote) {
+			graphic = Paths.image(callOnHScript('getMultiTexture', [note.texture]));
+			note.loadGraphic(graphic, true, Math.floor(graphic.width / 10), Math.floor(graphic.height / 5));
+        } else {
+            graphic = Paths.image(callOnHScript('getMultiTexture', [note.texture, true]));
+			note.loadGraphic(graphic, true, Math.floor(graphic.width / 2), Math.floor(graphic.height / 2));
+        }
+
         if (!note.isSustainNote) note.scale.set(scale, scale);
         else {
             note.scale.x = scale; //do it this way to avoid breaking sustains
@@ -19,8 +30,16 @@ function onCreatePost() {
         switch(note.noteData) {
             case 0:
                 if (!note.isSustainNote) {
-                    note.animation.add('Note', [4]);
+                    note.animation.add('Note', [10], 24, true);
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.add('holdend', [2], 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.add('hold', [0], 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     note.extraData.set('canChangeRGB', true);
@@ -34,8 +53,16 @@ function onCreatePost() {
                 }
             case 1:
                 if (!note.isSustainNote) {
-                    note.animation.add('Note', [5]);
+                    note.animation.add('Note', [11], 24, true);
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.add('holdend', [2], 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.add('hold', [0], 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     note.extraData.set('canChangeRGB', true);
@@ -49,23 +76,39 @@ function onCreatePost() {
                 }
             case 2:
                 if (!note.isSustainNote) {
-                    note.animation.add('Note', [6]);
+                    note.animation.add('Note', [12], 24, true);
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.add('holdend', [2], 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.add('hold', [0], 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     note.extraData.set('canChangeRGB', true);
-                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGB[2][0];
-                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGB[2][1];
-                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = ClientPrefs.data.arrowRGB[2][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = ClientPrefs.data.arrowRGBPixel[2][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.rgbShader.g = ClientPrefs.data.arrowRGBPixel[2][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.rgbShader.b = ClientPrefs.data.arrowRGBPixel[2][2];
 
-                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = ClientPrefs.data.arrowRGB[2][0];
-                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = ClientPrefs.data.arrowRGB[2][1];
-                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = ClientPrefs.data.arrowRGB[2][2];
+                    if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.noteSplashData.r = ClientPrefs.data.arrowRGBPixel[2][0];
+                    if (note.extraData.get('canChangeG') == null || note.extraData.get('canChangeG') == true) note.noteSplashData.g = ClientPrefs.data.arrowRGBPixel[2][1];
+                    if (note.extraData.get('canChangeB') == null || note.extraData.get('canChangeB') == true) note.noteSplashData.b = ClientPrefs.data.arrowRGBPixel[2][2];
                 }
             case 3:
                 if (!note.isSustainNote) {
-                    note.animation.add('Note', [7]);
+                    note.animation.add('Note', [13], 24, true);
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.add('holdend', [2], 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.add('hold', [0], 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     note.extraData.set('canChangeRGB', true);
@@ -90,7 +133,6 @@ function onCreatePost() {
                         note.animation.play("hold");
                     }
                 }
-                
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     note.extraData.set('canChangeRGB', true);
                     if (note.extraData.get('canChangeR') == null || note.extraData.get('canChangeR') == true) note.rgbShader.r = 0xFFCCCCCC;
@@ -103,8 +145,16 @@ function onCreatePost() {
                 }
             case 5:
                 if (!note.isSustainNote) {
-                    note.animation.add('Note', [4]);
+                    note.animation.add('Note', [10], 24, true);
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.add('holdend', [2], 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.add('hold', [0], 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     note.extraData.set('canChangeRGB', true);
@@ -118,8 +168,16 @@ function onCreatePost() {
                 }
             case 6:
                 if (!note.isSustainNote) {
-                    note.animation.add('Note', [5]);
+                    note.animation.add('Note', [11], 24, true);
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.add('holdend', [2], 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.add('hold', [0], 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     note.extraData.set('canChangeRGB', true);
@@ -133,8 +191,16 @@ function onCreatePost() {
                 }
             case 7:
                 if (!note.isSustainNote) {
-                    note.animation.add('Note', [6]);
+                    note.animation.add('Note', [12], 24, true);
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.add('holdend', [2], 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.add('hold', [0], 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     note.extraData.set('canChangeRGB', true);
@@ -148,8 +214,16 @@ function onCreatePost() {
                 }
             case 8:
                 if (!note.isSustainNote) {
-                    note.animation.add('Note', [7]);
+                    note.animation.add('Note', [13], 24, true);
                     note.animation.play('Note');
+                } else {
+                    if (StringTools.endsWith(name, 'end')) {
+		                note.animation.add('holdend', [2], 24, true);
+                        note.animation.play("holdend");
+                    } else {
+		                note.animation.add('hold', [0], 24, true);
+                        note.animation.play("hold");
+                    }
                 }
                 if (note.extraData.get('canChangeRGB') == null || note.extraData.get('canChangeRGB') == true) {
                     note.extraData.set('canChangeRGB', true);
@@ -172,84 +246,86 @@ function generateStaticArrows(player:Int) {
 	var strumLineX:Float = ClientPrefs.data.middleScroll ? -367.5 : -37.5;
 	var strumLineY:Float = ClientPrefs.data.downScroll ? (FlxG.height - 150) : 50;
 
-	for (i in 0...8)
+	for (i in 0...9)
 	{
 		var babyArrow:StrumNote = new StrumNote(strumLineX, strumLineY, 0, player);
 		babyArrow.downScroll = ClientPrefs.data.downScroll;
+	    var graphic = Paths.image(callOnHScript('getMultiTexture', [babyArrow.texture]));
+	    babyArrow.loadGraphic(graphic, true, Math.floor(graphic.width / 10), Math.floor(graphic.height / 5));
         babyArrow.scale.set(scale, scale);
 
         switch(i) {
             case 0:
-                babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+                babyArrow.animation.add('static', [0], 12, true);
+                babyArrow.animation.add('pressed', [10, 20], 12, false);
+                babyArrow.animation.add('confirm', [30, 40], 24, false);
 
-                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[0][0];
-                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[0][1];
-                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[0][2];
+                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGBPixel[0][0];
+                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGBPixel[0][1];
+                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGBPixel[0][2];
             case 1:
-                babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+                babyArrow.animation.add('static', [1], 12, true);
+                babyArrow.animation.add('pressed', [11, 21], 12, false);
+                babyArrow.animation.add('confirm', [31, 41], 24, false);
 
-                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[1][0];
-                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[1][1];
-                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[1][2];
+                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGBPixel[1][0];
+                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGBPixel[1][1];
+                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGBPixel[1][2];
             case 2:
-                babyArrow.animation.addByPrefix('static', 'arrowUP');
-                babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+                babyArrow.animation.add('static', [2], 12, true);
+                babyArrow.animation.add('pressed', [12, 22], 12, false);
+                babyArrow.animation.add('confirm', [32, 42], 24, false);
 
-                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[2][0];
-                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[2][1];
-                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[2][2];
+                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGBPixel[2][0];
+                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGBPixel[2][1];
+                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGBPixel[2][2];
             case 3:
-                babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+                babyArrow.animation.add('static', [3], 12, true);
+                babyArrow.animation.add('pressed', [13, 23], 12, false);
+                babyArrow.animation.add('confirm', [33, 43], 24, false);
 
-                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGB[3][0];
-                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGB[3][1];
-                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGB[3][2];
+                babyArrow.rgbShader.r = ClientPrefs.data.arrowRGBPixel[3][0];
+                babyArrow.rgbShader.g = ClientPrefs.data.arrowRGBPixel[3][1];
+                babyArrow.rgbShader.b = ClientPrefs.data.arrowRGBPixel[3][2];
             case 4:
-                babyArrow.animation.add('static', [4], 24, true);
-                babyArrow.animation.add('pressed', [14, 24], 24, false);
+                babyArrow.animation.add('static', [4], 12, true);
+                babyArrow.animation.add('pressed', [14, 24], 12, false);
                 babyArrow.animation.add('confirm', [34, 44], 24, false);
 
                 babyArrow.rgbShader.r = 0xFFCCCCCC;
                 babyArrow.rgbShader.g = 0xFFFBFBFB;
                 babyArrow.rgbShader.b = 0xFF3E3E3E;
             case 5:
-                babyArrow.animation.addByPrefix('static', 'arrowLEFT');
-                babyArrow.animation.addByPrefix('confirm', 'left confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'left press', 24, false);
+                babyArrow.animation.add('static', [0], 12, true);
+                babyArrow.animation.add('confirm', [10, 20], 12, false);
+                babyArrow.animation.add('pressed', [30, 40], 24, false);
 
-                babyArrow.rgbShader.r = 0xFFFFFF00;
-                babyArrow.rgbShader.g = 0xFFFFFFFF;
+                babyArrow.rgbShader.r = 0xFFFFE900;
+                babyArrow.rgbShader.g = 0xFFFFFDF2;
                 babyArrow.rgbShader.b = 0xFF993300;
             case 6:
-                babyArrow.animation.addByPrefix('static', 'arrowDOWN');
-                babyArrow.animation.addByPrefix('confirm', 'down confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'down press', 24, false);
+                babyArrow.animation.add('static', [1], 12, true);
+                babyArrow.animation.add('confirm', [11, 21], 12, false);
+                babyArrow.animation.add('pressed', [31, 41], 24, false);
 
                 babyArrow.rgbShader.r = 0xFF8B4AFF;
-                babyArrow.rgbShader.g = 0xFFFFFFFF;
+                babyArrow.rgbShader.g = 0xFFF9F6FF;
                 babyArrow.rgbShader.b = 0xFF3B177D;
             case 7:
-                babyArrow.animation.addByPrefix('static', 'arrowUP');
-                babyArrow.animation.addByPrefix('confirm', 'up confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'up press', 24, false);
+                babyArrow.animation.add('static', [2], 12, true);
+                babyArrow.animation.add('confirm', [12, 22], 12, false);
+                babyArrow.animation.add('pressed', [32, 42], 24, false);
 
-                babyArrow.rgbShader.r = 0xFFFF0000;
-                babyArrow.rgbShader.g = 0xFFFFFFFF;
-                babyArrow.rgbShader.b = 0xFF660000;
+                babyArrow.rgbShader.r = 0xFFFF1E1E;
+                babyArrow.rgbShader.g = 0xFFFFF4F4;
+                babyArrow.rgbShader.b = 0xFF6B0000;
             case 8:
-                babyArrow.animation.addByPrefix('static', 'arrowRIGHT');
-                babyArrow.animation.addByPrefix('confirm', 'right confirm', 24, false);
-                babyArrow.animation.addByPrefix('pressed', 'right press', 24, false);
+                babyArrow.animation.add('static', [3], 12, true);
+                babyArrow.animation.add('confirm', [13, 23], 12, false);
+                babyArrow.animation.add('pressed', [33, 43], 24, false);
 
                 babyArrow.rgbShader.r = 0xFF0033FF;
-                babyArrow.rgbShader.g = 0xFFFFFFFF;
+                babyArrow.rgbShader.g = 0xFFF2F4FF;
                 babyArrow.rgbShader.b = 0xFF000066;
         }
         babyArrow.noteData = i;
